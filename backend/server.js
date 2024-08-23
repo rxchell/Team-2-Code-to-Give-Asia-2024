@@ -3,9 +3,17 @@ import userRoute from './routes/userRoute.js'
 import donationRoute from './routes/donationRoute.js'
 import orderRoute from './routes/orderRoute.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
+import morgan from 'morgan'
+import cookieParser from 'cookie-parser'
 
 const app = express()
 const PORT = 3000
+
+// logging middleware
+app.use(morgan('dev'));
+
+// Cookie parser middleware
+app.use(cookieParser());
 
 // Body parser middleware
 app.use(express.json());
