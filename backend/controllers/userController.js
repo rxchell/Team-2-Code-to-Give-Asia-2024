@@ -23,11 +23,11 @@ const registerUser = asyncHandler(async (req, res) => {
         const isAdmin = false;
         const isAgency = false;
         const isDonor = false;
-        if (userRole == 'admin') {
+        if (userRole && userRole == 'admin') {
             isAdmin = true;
-        } else if (userRole == 'agency') {
+        } else if (userRole && userRole == 'agency') {
             isAgency = true;
-        } else if (userRole == 'donor') {
+        } else if (userRole && userRole == 'donor') {
             isDonor = true;
         }
 
