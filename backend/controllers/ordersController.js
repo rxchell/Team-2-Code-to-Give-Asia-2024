@@ -32,7 +32,7 @@ const getOrderById = asyncHandler(async (req, res) => {
     const { userId, orderId } = req.params;
     
     const queryDoc = await firestore.collection(COLLECTION_NAME).doc(orderId).get();
-    const order = queryDoc.data()
+    const order = queryDoc.data();
 
     if (!queryDoc.exists || order.userId !== userId) {
         res.status(404)
@@ -42,25 +42,63 @@ const getOrderById = asyncHandler(async (req, res) => {
     res.status(200).json(order);
 })
 
-// TODO
-// @desc    Get a specific order by its id for a particular user
-// @route   GET /api/orders/:userId/:orderId
+// @desc    Create a new order request for a particular user
+// @route   POST /api/orders/:userId/
 // @access  Private
-// const createOrder = asyncHandler(async (req, res) => {
-//     const userId = req.params.userId;
+const createOrder = asyncHandler(async (req, res) => {
+    const userId = req.params.userId;
+    const { quantity, donationId } = req.body;
+    const defaultStatus = "Pending"
 
-//     let collectionRef = firestore.collection(COLLECTION_NAME);
-//     let docRef = null;
-//     delete req.body["orderID"];
+    if (!quantity || !donationId) {
+        res.status(400);
+        throw new Error('quantity and donationId fields are required');
+    }
+
+    const orderBody = {
+        userId: userId,
+        quantity: quantity,
+        donationId: donationId,
+        status: defaultStatus,
+        createdAt: new Date().toISOString()
+    };
     
-//     docRef = await collectionRef.add(req.body);
-//     res.json({ [docRef.id]: req.body });
-//     res.status(200).json(order);
-// })
+    const docRef = await firestore.collection(COLLECTION_NAME).add(orderBody);   
+    const newDoc = await docRef.get();
+    
+    res.status(201).json({
+        id: docRef.id,
+        ...newDoc.data()
+    });
+})
 
-// TODO
-// const updateOrder = asyncHandler(async (req, res) => {
-//     const { userId, orderId } = req.params;
-// })
+// @desc    Update an existing order request for a particular user
+// @route   POST /api/orders/:userId/:orderId
+// @access  Private
+const updateOrder = asyncHandler(async (req, res) => {
+    const { userId, orderId } = req.params;
+    
+    const orderRef = firestore.collection(COLLECTION_NAME).doc(orderId);
+    const doc = await orderRef.get();
+    const currentData = doc.data();
 
-export { getAllOrders, getOrderById }
+    if (!doc.exists || currentData.userId !== userId) {
+        res.status(404);
+        throw new Error('No orders found for this userId and orderId');
+    }
+
+    const updateData = {
+        ...req.body,
+        updatedAt: new Date().toISOString()
+    };
+
+    await orderRef.update(updateData);
+    const updatedDoc = await orderRef.get();
+
+    res.status(200).json({
+        id: orderId,
+        ...updatedDoc.data()
+    });
+});
+
+export { getAllOrders, getOrderById, createOrder, updateOrder }

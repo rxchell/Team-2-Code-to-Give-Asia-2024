@@ -53,7 +53,7 @@ const adminGetAllOrders = asyncHandler(async (req, res) => {
 // @access  Private
 const adminUpdateOrder = asyncHandler(async (req, res) => {
     if (!req.body.orderID) {
-        res.status(404)
+        res.status(400)
         throw new Error('orderID not found! Please pass orderID in the object')
     }
     
@@ -73,7 +73,7 @@ const adminUpdateOrder = asyncHandler(async (req, res) => {
 // @access  Private
 const adminDeleteOrder = asyncHandler(async (req, res) => {
     if (!req.body.orderID) {
-        res.status(404)
+        res.status(400)
         throw new Error('orderID not found! Please pass orderID in the object')
     }
 
