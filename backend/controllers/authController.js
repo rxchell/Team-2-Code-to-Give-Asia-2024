@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import asyncHandler from "../middleware/asyncHandler.js";
+import { auth } from '../configfirebase.js';
 
 const firebaseConfig = {
     apiKey: process.env.apiKey,
@@ -12,15 +13,18 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+export const client_auth = getAuth(app);
 
 // @desc    login user & get token
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const { phoneNumber, password } = req.body;
+    const userEmail = await auth.getUserByPhoneNumber(phoneNumber)
+    if (!userEmail) {
+        throw new Error("No user with this phone number")
+    }
+    const userCredential = await signInWithEmailAndPassword(auth, userEmail, password);
 
     if (userCredential) {
         const user = userCredential.user
