@@ -18,6 +18,7 @@ import FoodOrderPage from './pages/FoodOrderPage'
 // import AdminRecordPage from './pages/AdminRecordPage'
 // import FoodDonationListingPage from './pages/FoodDonationListingPage'
 import GuidelinesPage from './pages/GuidelinesPage'
+import AdditionalInfoPage from './pages/AdditionalInfoPage'
 import DonatePage from './pages/DonatePage'
 import AgencyManagePage from './pages/AgencyManagePage'
 
@@ -38,6 +39,7 @@ export default function App() {
                     <Route path="/admin/home" element={<AdminRecordPage />} />
                     <Route path="/agency/manage-user" element={<AgencyManagePage />} />
                     <Route path="/donate" element={<DonatePage />} />
+                    <Route path="/donate/additional-information" element={<AdditionalInfoPage />} />
                     <Route path="/guidelines" element={GuidelinesPage}/>
                     <Route path="/user/home/food-order" element={<FoodOrderPage />} />
                     {/* <Route path="/user/home/food-order/:id" element={<FoodOrderPage />} /> */}

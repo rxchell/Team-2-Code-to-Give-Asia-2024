@@ -6,16 +6,16 @@ export default function Footer() {
         <footer className="footer footer-center bg-neutral text-neutral-content p-10">
   <aside className="space-y-5">
     <h1 className="font-bold text-2xl">Contact Us</h1>
-    <div>
+    <div className="flex-col">
         <p className="font-bold">Donor, Media & General Enquiries</p>
         <p>Email: enquiries@foodbank.sg</p>
     </div>
     
-    <div>
+    <div className="flex-col">
         <p className="font-bold">Volunteers</p>
         <p>Contact: volunteer@foodbank.sg</p>
     </div>
-    <div>
+    <div className="flex-col">
         <p className="font-bold">We are located at:</p>
         <p>The Foodbank Singapore Ltd
             <br/>218 Pandan Loop, XPACE
