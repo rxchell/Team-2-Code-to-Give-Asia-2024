@@ -147,7 +147,7 @@ export default function RegisterPage() {
     setPopupAccepted(e.target.checked);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const newErrors = {};
 
@@ -172,6 +172,36 @@ export default function RegisterPage() {
 
     if (Object.keys(newErrors).length === 0) {
       // Perform registration logic here
+      try {
+        await axios.post('/register', {
+            organisationName,
+            password,
+            area,
+            address,
+            postalCode,
+            operationHour,
+            entityNature,
+            uploadCertificate,
+            accountType,
+            contactPerson,
+            contactNumber,
+            contactEmail,
+        });
+        alert('Registration successful! You can log in now.');
+        // toast('🦄 Wow so easy!', {
+        //     position: "top-right",
+        //     autoClose: 5000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //     theme: "light",
+        //     transition: Bounce,
+        // });
+    } catch (error) {
+        alert('Registration failed. Please try again.');
+    }
       alert('Registration successful!');
     }
   }
@@ -419,19 +449,21 @@ export default function RegisterPage() {
           {/* Terms and Conditions */}
           <div className="flex items-center mt-6">
             <input
-              id="terms"
-              name="terms"
-              type="checkbox"
-              checked={formData.terms}
-              onChange={handleChange}
-              className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                id="terms"
+                name="terms"
+                type="checkbox"
+                checked={formData.terms}
+                onChange={handleChange}
+                className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-green-500"
+                required
             />
             <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
-              I agree to the 
-              <a href="/terms-and-conditions" className="text-indigo-600 underline"> terms and conditions</a>.
+                By submitting this form, you agree that FoodBank may collect, use and disclose your personal data, as provided in this application form, or (if applicable) obtained by our organisation as a result of your membership, for the following purposes in accordance with the Personal Data Protection Act 2012:
+                (a) the processing of this account registration; and
+                (b) the administration of the account with our organisation.
             </label>
             {errors.terms && <p className="text-red-500 text-xs mt-1">{errors.terms}</p>}
-          </div>
+            </div>
 
           {/* Register Button */}
           <div>
@@ -456,7 +488,7 @@ export default function RegisterPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               </button>
-              <h3 className="text-lg font-semibold text-gray-900">Good Samaritan Food Donation Bill</h3>
+              <h3 className="text-lg font-semibold text-gray-900">For Donors:</h3>
               <p className="mt-2 text-sm text-gray-700">
                 The Good Samaritan Food Donation Bill was passed in Parliament on 6 August to provide liability waiver for food donors as long as they fulfil the following four conditions:
                 <ol className="list-decimal list-inside mt-2 text-sm text-gray-700">

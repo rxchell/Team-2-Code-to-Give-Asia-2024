@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
+// TODO: include country code
+
 export default function LoginPage() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
@@ -15,7 +17,7 @@ export default function LoginPage() {
                 password,
             });
             // Assume setUser is a function to update user state
-            setUser(data); 
+            // setUser(data); 
             alert('Login successful!');
             setRedirect(true);
         } catch (error) {
@@ -24,7 +26,7 @@ export default function LoginPage() {
     };
 
     if (redirect) {
-        return <Navigate to="/" />;
+        return <Navigate to="/" />; // TODO: add navigation after login
     }
 
     return (
