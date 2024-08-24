@@ -19,14 +19,26 @@ const registerUser = asyncHandler(async (req, res) => {
         const userId = user.uid
         const userDocRef = firestore.collection('users').doc(userId)
 
-        // create role for user, default is individual
-        await auth.createCustomToken(userId, { userRole: userRole || "individual" });
+        // setting userRole
+        const isAdmin = false;
+        const isAgency = false;
+        const isDonor = false;
+        if (userRole == 'admin') {
+            isAdmin = true;
+        } else if (userRole == 'agency') {
+            isAgency = true;
+        } else if (userRole == 'donor') {
+            isDonor = true;
+        }
 
         // stores user information
         userDocRef.set({
             name: name,
             email: email,
-            phoneNumber: phoneNumber
+            phoneNumber: phoneNumber,
+            isAdmin: isAdmin,
+            isAgency: isAgency,
+            isDonor: isDonor
             // TODO include other information once confirmed
         })
         res.json({
