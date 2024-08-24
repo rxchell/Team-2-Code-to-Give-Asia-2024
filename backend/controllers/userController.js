@@ -3,7 +3,7 @@ import { auth, firestore } from "../configfirebase.js";
 
 // @desc    Register new user 
 // @route   POST /api/users
-// @access  Private/Admin
+// @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   // TODO add other fields once form confirmed
   const { name, email, password, phoneNumber, userRole } = req.body;
@@ -13,46 +13,46 @@ const registerUser = asyncHandler(async (req, res) => {
     email: email,
     phoneNumber: phoneNumber,
     password: password
-});
+  });
 
-if (user) {
+  if (user) {
     const userId = user.uid
     const userDocRef = firestore.collection('users').doc(userId)
 
-        // setting userRole
-        const isAdmin = false;
-        const isAgency = false;
-        const isDonor = false;
-        if (userRole && userRole == 'admin') {
-            isAdmin = true;
-        } else if (userRole && userRole == 'agency') {
-            isAgency = true;
-        } else if (userRole && userRole == 'donor') {
-            isDonor = true;
-        }
-
-        // stores user information
-        userDocRef.set({
-            name: name,
-            email: email,
-            phoneNumber: phoneNumber,
-            isAdmin: isAdmin,
-            isAgency: isAgency,
-            isDonor: isDonor
-            // TODO include other information once confirmed
-        })
-        res.json({
-            message: "user registered successfully"
-        })
+    // setting userRole
+    const isAdmin = false;
+    const isAgency = false;
+    const isDonor = false;
+    if (userRole && userRole == 'admin') {
+      isAdmin = true;
+    } else if (userRole && userRole == 'agency') {
+      isAgency = true;
+    } else if (userRole && userRole == 'donor') {
+      isDonor = true;
     }
+
+    // stores user information
+    userDocRef.set({
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      isAdmin: isAdmin,
+      isAgency: isAgency,
+      isDonor: isDonor
+      // TODO include other information once confirmed
+    })
+    res.json({
+      message: "user registered successfully"
+    })
+  }
 })
 
 // @desc    Get all users
 // @route   GET /api/users
 // @access  Private/Admin
 const getAllUsers = asyncHandler(async (req, res) => {
-    const usersSnapshot = await firestore.collection('users').get();
-    const usersList = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  const usersSnapshot = await firestore.collection('users').get();
+  const usersList = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   res.status(200).json(usersList);
 });
 
@@ -116,8 +116,8 @@ const updateUser = asyncHandler(async (req, res) => {
     type
   }, { merge: true });
 
-//   await auth.updateUser(id, { displayName: name, email: email });
-  
+  //   await auth.updateUser(id, { displayName: name, email: email });
+
   res.status(200).json({ message: "User updated successfully" });
 });
 
