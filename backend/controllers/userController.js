@@ -92,10 +92,10 @@ const updateUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const {
     name,
+    email,
     address,
     area,
-    contactEmail,
-    contactNum,
+    phoneNumber,
     contactPerson,
     entityCertificate,
     postalCode,
@@ -108,8 +108,7 @@ const updateUser = asyncHandler(async (req, res) => {
     email,
     address,
     area,
-    contactEmail,
-    contactNum,
+    phoneNumber,
     contactPerson,
     entityCertificate,
     postalCode,
@@ -117,7 +116,7 @@ const updateUser = asyncHandler(async (req, res) => {
     type
   }, { merge: true });
 
-  await auth.updateUser(id, { displayName: name, email: email });
+//   await auth.updateUser(id, { displayName: name, email: email });
   
   res.status(200).json({ message: "User updated successfully" });
 });
