@@ -1,18 +1,8 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import { auth } from "../configfirebase.js";
 import { firestore } from "../configfirebase.js";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  deleteDoc,
-  collection,
-  getDocs,
-} from "firebase/firestore";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { doc, getDoc,setDoc, deleteDoc, collection, getDocs } from "firebase/firestore";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, } from "firebase/auth";
 
 // @desc    login user & get token
 // @route   POST /api/users/login
