@@ -14,28 +14,28 @@ const collectionName = "donations";
 
 // Get
 router.get("/get", async (req, res) => {
-  const docRef = doc(firestore, collectionName, req.query.foodDonationID);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-  } else {
-    // docSnap.data() will be undefined
-    res.json({ errorMessage: `${req.query.foodDonationID} not found` });
+  let documentRef = firestore.doc(`${collectionName}/${req.query.donationID}`);
+  let documentSnapshot = await documentRef.get();
+  if (!documentSnapshot.exists) {
+    res.json({ errorMessage: `${req.query.donationID} donationID not found` });
     return;
   }
 
-  res.json(docSnap.data());
+  res.json(documentSnapshot.data());
 });
 
 // Get All
 router.get("/getall", async (req, res) => {
-  let returnResult = {};
-
-  const querySnapshot = await getDocs(collection(firestore, collectionName));
-  querySnapshot.forEach((doc) => {
-    returnResult[doc.id] = doc.data();
-  });
+  let returnResult = [];
+  try {
+    const querySnapshot = await firestore.collection(collectionName).get();
+    for (let doc of querySnapshot.docs) {
+      returnResult.push({ [doc.id]: doc.data() });
+    }
+  } catch (error) {
+    res.json({ errorMessage: error });
+    return;
+  }
 
   res.json(returnResult);
 });
@@ -46,14 +46,17 @@ router.post("/update", async (req, res) => {
     res.json({ errorMessage: `donationID not found in object! Please pass donationID in the object` });
     return;
   }
-  const docRef = doc(firestore, collectionName, req.body.donationID);
 
+  let documentRef = firestore.doc(`${collectionName}/${req.body.donationID}`);
+  delete req.body["donationID"];
   try {
-    await updateDoc(docRef, req.body);
+    let updateRes = await documentRef.update(req.body);
+    // console.log(`Document updated at ${res.updateTime}`);
   } catch (error) {
     res.json({ errorMessage: `Error updating document: ${error}` });
     return;
   }
+
   res.json(req.body);
 });
 
@@ -63,25 +66,32 @@ router.delete("/delete", async (req, res) => {
     res.json({ errorMessage: `donationID not found in object! Please pass donationID in the object` });
     return;
   }
+
+  let documentRef = firestore.doc(`${collectionName}/${req.body.donationID}`);
   try {
-    await deleteDoc(doc(firestore, collectionName, req.body.donationID));
+    let deleteRes = await documentRef.delete();
+    // console.log(`Document updated at ${res.updateTime}`);
   } catch (error) {
     res.json({ errorMessage: `Error deleting document: ${error}` });
     return;
   }
-  res.json({ message: "success" });
+
+  res.json({ message: "Delete success" });
 });
 
 // Create
 router.put("/create", async (req, res) => {
+  let collectionRef = firestore.collection(collectionName);
+  let docRef = null;
+  delete req.body["donationID"];
   try {
-    const docRef = await addDoc(collection(firestore, collectionName), req.body);
-    console.log("Document written with ID: ", docRef.id);
-    res.json({ [docRef.id]: req.body });
+    docRef = await collectionRef.add(req.body);
+    // console.log(`Added document with id: ${docRef.id}`);
   } catch (error) {
     res.json({ errorMessage: `Error adding document: ${error}` });
     return;
   }
+  res.json({ [docRef.id]: req.body });
 });
 
 export default router;
