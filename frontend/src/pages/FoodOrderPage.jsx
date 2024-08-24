@@ -2,20 +2,11 @@ import { useState } from "react";
 import FoodCard from "../components/FoodOrder/FoodCard";
 import FoodDonationData from "../FakeFoodDonation";
 import FoodDetails from "../components/FoodOrder/FoodDetails";
+import QuantityCounter from "../components/FoodOrder/QuantityToOrder";
+import RequestButton from "../components/FoodOrder/RequestButton";
 
 export default function FoodOrderPage() {
-
     const [foodDonationData] = useState(FoodDonationData[0]);
-
-    // link to donationId
-    // const { id } = useParams();
-
-    // // Find the specific food donation by ID
-    // const foodDonationData = FoodDonationData.find(donation => donation.id === id);
-
-    // if (!foodDonationData) {
-    //     return <div>Food donation not found</div>;
-    // }
 
     return (
         <div className="container mx-auto py-8">
@@ -47,6 +38,16 @@ export default function FoodOrderPage() {
                         collectBy={foodDonationData.collectBy}
                         notes={foodDonationData.notes}
                     />
+                </div>
+            </div>
+            <div className="flex flex-row items-center">
+                <div className="w-full flex justify-end mb-4">
+                    <QuantityCounter
+                        initialQuantity={foodDonationData.quantity}
+                    />
+                </div>
+                <div className="w-full flex justify-end">
+                    <RequestButton />
                 </div>
             </div>
         </div>
