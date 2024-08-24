@@ -78,7 +78,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const userRef = doc(firestore, "users", id);
   await deleteDoc(userRef);
-  const user = getAuth().currentUser;
+  const user = auth.currentUser;
   await firebaseDeleteUser(user);
   res.status(200).json({ message: "User deleted successfully" });
 });
@@ -90,7 +90,6 @@ const updateUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const {
     name,
-    email,
     address,
     area,
     contactEmail,
@@ -102,9 +101,15 @@ const updateUser = asyncHandler(async (req, res) => {
     type,
   } = req.body;
   const userRef = doc(firestore, "users", id);
-  await setDoc(userRef, { name, email, address, area, contactEmail, contactNum, contactPerson, entityCertificate, postalCode, tags, type }, { merge: true });
-  const user = getAuth().currentUser;
-  await updateProfile(user, { displayName: name });
+  await setDoc(userRef, { name, address, area, contactEmail, contactNum, contactPerson, entityCertificate, postalCode, tags, type }, { merge: true });
+  const user = auth.currentUser;
+  console.log(user);
+  if (user) {
+    await updateProfile(user, { displayName: name });
+  } else {
+    return res.status(401).json({ message: "User not authenticated" });
+  }
+  
   res.status(200).json({ message: "User updated successfully" });
 });
 
