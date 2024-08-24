@@ -21,7 +21,6 @@ import GuidelinesPage from './pages/GuidelinesPage'
 import DonatePage from './pages/DonatePage'
 import AgencyManagePage from './pages/AgencyManagePage'
 
-
 // axios.defaults.baseURL = "http://localhost:3000/";
 // axios.defaults.withCredentials = true;
 
