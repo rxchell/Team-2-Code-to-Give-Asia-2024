@@ -51,9 +51,8 @@ if (user) {
 // @route   GET /api/users
 // @access  Private/Admin
 const getAllUsers = asyncHandler(async (req, res) => {
-  const usersRef = collection(firestore, "users");
-  const usersSnapshot = await getDocs(usersRef);
-  const usersList = usersSnapshot.docs.map((doc) => doc.data());
+    const usersSnapshot = await firestore.collection('users').get();
+    const usersList = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   res.status(200).json(usersList);
 });
 
@@ -62,9 +61,9 @@ const getAllUsers = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const getUserById = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const userRef = doc(firestore, "users", id);
-  const userSnap = await getDoc(userRef);
-  if (userSnap.exists()) {
+  const userSnap = await firestore.collection('users').doc(id).get();
+
+  if (userSnap.exists) {
     res.status(200).json(userSnap.data());
   } else {
     res.status(404).json({ message: "User not found" });
@@ -76,10 +75,13 @@ const getUserById = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const userRef = doc(firestore, "users", id);
-  await deleteDoc(userRef);
-  const user = auth.currentUser;
-  await firebaseDeleteUser(user);
+
+  //delete user from firebase authentication
+  await auth.deleteUser(id);
+
+  //delete user document from Firestore
+  await firestore.collection('users').doc(id).delete();
+
   res.status(200).json({ message: "User deleted successfully" });
 });
 
@@ -100,15 +102,22 @@ const updateUser = asyncHandler(async (req, res) => {
     tags,
     type,
   } = req.body;
-  const userRef = doc(firestore, "users", id);
-  await setDoc(userRef, { name, address, area, contactEmail, contactNum, contactPerson, entityCertificate, postalCode, tags, type }, { merge: true });
-  const user = auth.currentUser;
-  console.log(user);
-  if (user) {
-    await updateProfile(user, { displayName: name });
-  } else {
-    return res.status(401).json({ message: "User not authenticated" });
-  }
+  const userRef = firestore.collection('users').doc(id);
+  await userRef.set({
+    name,
+    email,
+    address,
+    area,
+    contactEmail,
+    contactNum,
+    contactPerson,
+    entityCertificate,
+    postalCode,
+    tags,
+    type
+  }, { merge: true });
+
+  await auth.updateUser(id, { displayName: name, email: email });
   
   res.status(200).json({ message: "User updated successfully" });
 });
