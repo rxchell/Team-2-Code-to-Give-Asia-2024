@@ -40,13 +40,11 @@ export default function FoodOrderPage() {
                     />
                 </div>
             </div>
-            <div className="flex flex-row items-center">
-                <div className="w-full flex justify-end mb-4">
-                    <QuantityCounter
-                        initialQuantity={foodDonationData.quantity}
-                    />
-                </div>
-                <div className="w-full flex justify-end">
+            <div className="flex flex-col items-center">
+                <QuantityCounter
+                    initialQuantity={foodDonationData.quantity}
+                />
+                <div>
                     <RequestButton />
                 </div>
             </div>
