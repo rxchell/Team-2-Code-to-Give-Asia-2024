@@ -7,14 +7,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary:    "#2F0067",
-				// secondary:  "#987AB4",
-				secondary:  "#B2A4C9",
-				black:      "#444444",
+        primary:    "#FED700",
+				secondary:  "#99CA3B",
+				dark:       "#444444",
 				light:      "#f7f8f9",
+        halal:      '#003b01',
+        spicy:      '#701403',
+        vegan:      '#034170',
+        egg:        '#d1e805',
+        peanut:     '#ed8b28',
+        milk:       '#f2a1a1',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
 }
 
