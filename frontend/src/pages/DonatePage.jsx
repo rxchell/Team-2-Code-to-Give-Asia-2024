@@ -248,33 +248,41 @@ export default function DonatePage() {
                     <label>
                         <input
                             type="checkbox"
-                            value="Others"
+                            value="Gluten-Free"
                             onChange={handleSpecialTagsChange}
                         />
-                        Others (please specify)
+                        Gluten-Free
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Low-Sugar"
+                            onChange={handleSpecialTagsChange}
+                        />
+                        Low-Sugar
                     </label>
                 </div>
                 </div>
                 
-
+                
                 <div className='items-center justify-between'>
                     <label>Allergens</label>
                     <div>
                     <label>
                         <input
                             type="checkbox"
-                            value="Egg"
+                            value="Peanut"
                             onChange={handleAllergensChange}
                         />
-                        Egg
+                        Peanut
                     </label>
                     <label>
                         <input
                             type="checkbox"
-                            value="Dairy"
+                            value="Milk"
                             onChange={handleAllergensChange}
                         />
-                        Dairy
+                        Milk
                     </label>
                     <label>
                         <input
@@ -287,18 +295,26 @@ export default function DonatePage() {
                     <label>
                         <input
                             type="checkbox"
-                            value="Nuts"
+                            value="Eggs"
                             onChange={handleAllergensChange}
                         />
-                        Nuts
+                        Eggs
                     </label>
                     <label>
                         <input
                             type="checkbox"
-                            value="Crustaceans"
+                            value="Fish"
                             onChange={handleAllergensChange}
                         />
-                        Crustaceans
+                        Fish
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Seafood"
+                            onChange={handleAllergensChange}
+                        />
+                        Seafood
                     </label>
                     <label>
                         <input
