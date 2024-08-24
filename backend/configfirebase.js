@@ -1,21 +1,16 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth"
+import { initializeApp, cert } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
+import { getFirestore } from 'firebase-admin/firestore'
+
 import 'dotenv/config'
 
 // Firebase configuration
-const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-};
 
 // Initialize Firebase and needed functions
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(
+  { credential: cert(process.env.GOOGLE_APPLICATION_CREDENTIALS) }
+);
 // Firestore
 export const firestore = getFirestore(app);
-export const auth = getAuth(app)
+export const auth = getAuth(app);
