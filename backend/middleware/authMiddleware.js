@@ -45,7 +45,7 @@ const donor = asyncHandler(async (req, res, next) => {
 
 // Admin middleware
 const admin = asyncHandler(async (req, res, next) => {
-    if (req.user && req.user.admin) {
+    if (req.user && req.user.isAdmin) {
         next();
     } else {
         throw new Error("Not authorized as admin");
