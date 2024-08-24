@@ -8,8 +8,6 @@ export default function OptionsBar ({ onSearch }) {
     
     const handleSearchClick = () => {
         onSearch(selectedFoodTypes, selectedRegion);
-        // console.log(`selectedFoodTypes: ${selectedFoodTypes}`);
-        // console.log(`selectedRegion: ${selectedRegion}`);
     };
 
     return (

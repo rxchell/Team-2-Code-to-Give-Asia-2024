@@ -2,16 +2,10 @@ import { useState } from "react";
 
 export default function RegionOptions ({ onChange }) {
     const [selectedRegion, setSelectedRegion] = useState('All Regions');
-    // onChange('All Region');
 
     const handleRegionChange = (event) => {
         const { value } = event.target;
 
-        // if (value === 'All Region') {
-        //     setSelectedRegion('All Region');
-        // } else {
-        //     setSelectedRegion(value);
-        // }
         setSelectedRegion(value);
         onChange(value);
     };

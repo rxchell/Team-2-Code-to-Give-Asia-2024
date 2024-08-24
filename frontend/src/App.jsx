@@ -13,6 +13,7 @@ import BeneficiaryRecordPage from './pages/BeneficiaryRecordPage'
 import AdminRecordPage from './pages/AdminRecordPage'
 import FoodDonationListingPage from './pages/FoodDonationListingPage'
 import GuidelinesPage from './pages/GuidelinesPage'
+import DonatePage from './pages/DonatePage'
 
 
 // axios.defaults.baseURL = "http://localhost:3000/";
@@ -26,7 +27,6 @@ export default function App() {
                     <Route index element={<HomePage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
-
                     <Route path="/donor/home" element={<DonorRecordPage />} />
                     <Route path="/user/home" element={<FoodDonationListingPage />} />
                     <Route path="/user/record" element={<BeneficiaryRecordPage />} />

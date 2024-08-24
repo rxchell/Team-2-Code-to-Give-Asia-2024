@@ -24,7 +24,7 @@ export default function RecordTable() {
                         <th className="text-center">Donor</th>
                         <th className="text-center">Beneficiary</th>
                         <th className="text-center">Status</th>
-                        <th className="last:rounded-tr-lg">Show the details</th>
+                        <th className="last:rounded-tr-lg text-center">Show the details</th>
                     </tr>
                 </thead>
                 <tbody>

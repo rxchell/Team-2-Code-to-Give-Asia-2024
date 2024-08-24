@@ -118,7 +118,6 @@ import { useState } from 'react';
 
 export default function FoodTypeOptions({ onChange }) {
     const [selectedFoodTypes, setSelectedFoodTypes] = useState(['All Foods']);
-    // onChange('All food');
 
     const handleFoodTypeChange = (event) => {
         const { value } = event.target;
@@ -130,6 +129,9 @@ export default function FoodTypeOptions({ onChange }) {
             if (selectedFoodTypes.includes('All Foods')) {
                 setSelectedFoodTypes([value]);
                 onChange([value]);
+            } else if (selectedFoodTypes.includes(value)) {
+                setSelectedFoodTypes(selectedFoodTypes.filter(type => type !== value));
+                onChange(selectedFoodTypes.filter(type => type !== value));
             } else {
                 setSelectedFoodTypes([...selectedFoodTypes, value]);
                 onChange([...selectedFoodTypes, value]);
@@ -157,6 +159,14 @@ export default function FoodTypeOptions({ onChange }) {
             </div>
             <div className="flex items-center gap-2">
                 <button
+                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${selectedFoodTypes.includes('Spicy') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
+                    onClick={() => handleFoodTypeChange({ target: { value: 'Spicy' } })}
+                >
+                    Spicy
+                </button>
+            </div>
+            <div className="flex items-center gap-2">
+                <button
 
                     className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${selectedFoodTypes.includes('Vegetarian') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
                     onClick={() => handleFoodTypeChange({ target: { value: 'Vegetarian' } })}
@@ -167,37 +177,19 @@ export default function FoodTypeOptions({ onChange }) {
             <div className="flex items-center gap-2">
                 <button
 
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${selectedFoodTypes.includes('No egg') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleFoodTypeChange({ target: { value: 'No egg' } })}
+                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${selectedFoodTypes.includes('Gluten-Free') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
+                    onClick={() => handleFoodTypeChange({ target: { value: 'Gluten-Free' } })}
                 >
-                    No egg
+                    Gluten-Free
                 </button>
             </div>
             <div className="flex items-center gap-2">
                 <button
 
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${selectedFoodTypes.includes('No peanut') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleFoodTypeChange({ target: { value: 'No peanut' } })}
+                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${selectedFoodTypes.includes('Low-Sugar') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
+                    onClick={() => handleFoodTypeChange({ target: { value: 'Low-Sugar' } })}
                 >
-                    No peanut
-                </button>
-            </div>
-            <div className="flex items-center gap-2">
-                <button
-
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${selectedFoodTypes.includes('No spicy') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleFoodTypeChange({ target: { value: 'No spicy' } })}
-                >
-                    No spicy
-                </button>
-            </div>
-            <div className="flex items-center gap-2">
-                <button
-
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${selectedFoodTypes.includes('No seafood') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleFoodTypeChange({ target: { value: 'No seafood' } })}
-                >
-                    No seafood
+                    Low-Sugar
                 </button>
             </div>
         </div>
