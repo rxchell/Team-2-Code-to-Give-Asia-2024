@@ -1,16 +1,16 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import { firestore } from "../configfirebase.js";
 
-const collectionName = 'orders'
+const COLLECTION_NAME = 'orders'
 
 // @desc    Get all orders for a particular userId
 // @route   GET /api/orders/:userId
 // @access  Private
-const getAllOrders = asyncHandler(async (req, res, next) => {
+const getAllOrders = asyncHandler(async (req, res) => {
     const userId = req.params.userId;
     let orders = [];
 
-    const querySnapshot = await firestore.collection(collectionName)
+    const querySnapshot = await firestore.collection(COLLECTION_NAME)
         .where('userId', '==', userId).get();
     
     if (querySnapshot.empty) {
@@ -31,7 +31,7 @@ const getAllOrders = asyncHandler(async (req, res, next) => {
 const getOrderById = asyncHandler(async (req, res) => {
     const { userId, orderId } = req.params;
     
-    const queryDoc = await firestore.collection(collectionName).doc(orderId).get();
+    const queryDoc = await firestore.collection(COLLECTION_NAME).doc(orderId).get();
     const order = queryDoc.data()
 
     if (!queryDoc.exists || order.userId !== userId) {
@@ -41,5 +41,26 @@ const getOrderById = asyncHandler(async (req, res) => {
     
     res.status(200).json(order);
 })
+
+// TODO
+// @desc    Get a specific order by its id for a particular user
+// @route   GET /api/orders/:userId/:orderId
+// @access  Private
+// const createOrder = asyncHandler(async (req, res) => {
+//     const userId = req.params.userId;
+
+//     let collectionRef = firestore.collection(COLLECTION_NAME);
+//     let docRef = null;
+//     delete req.body["orderID"];
+    
+//     docRef = await collectionRef.add(req.body);
+//     res.json({ [docRef.id]: req.body });
+//     res.status(200).json(order);
+// })
+
+// TODO
+// const updateOrder = asyncHandler(async (req, res) => {
+//     const { userId, orderId } = req.params;
+// })
 
 export { getAllOrders, getOrderById }
