@@ -11,8 +11,8 @@ import DonatePage from './pages/DonatePage'
 import GuidelinesPage from './pages/GuidelinesPage'
 import AdditionalInfoPage from './pages/AdditionalInfoPage'
 
-// axios.defaults.baseURL = "http://localhost:3000/";
-// axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "http://localhost:3000/";
+axios.defaults.withCredentials = true;
 
 export default function App() {
     return (
@@ -24,7 +24,7 @@ export default function App() {
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/donate" element={<DonatePage />} />
                     <Route path="/donate/additional-information" element={<AdditionalInfoPage />} />
-                    <Route path="/guidelines" element={GuidelinesPage}/>
+                    <Route path="/guidelines" element={<GuidelinesPage />}/>
                     <Route path='*' element={<h1>Not Found</h1>} />
                 </Route>
             </Routes>
