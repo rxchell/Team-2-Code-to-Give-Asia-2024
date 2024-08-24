@@ -21,6 +21,8 @@ export default function BeneficiaryRecordTable() {
     const allData = FakeTransaction;
     const data = allData.filter((item) => item.beneficiary === user.name);
 
+    // TODO - Replace with actual fetch request
+
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">
             <table className="table w-full rounded-lg overflow-hidden">

@@ -13,6 +13,8 @@ export default function RecordTable() {
     // Temporary transaction data
     const data = FakeTransaction;
 
+    // TODO - Replace with actual fetch request
+
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">
             <table className="table w-full rounded-lg overflow-hidden">

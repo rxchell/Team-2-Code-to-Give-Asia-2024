@@ -77,7 +77,6 @@ import OptionsBar from "../components/FoodDonationCard/OptionsBar";
 import FoodDonationData from "../FakeFoodDonation";
 import FoodDonationCard from "../components/FoodDonationCard/FoodDonationCard";
 
-
 export default function FoodDonationListingPage() {
     let foodDonationData = FoodDonationData;
     const [filteredData, setFilteredData] = useState(foodDonationData);
@@ -85,7 +84,7 @@ export default function FoodDonationListingPage() {
     const [searchParams, setSearchParams] = useState({ selectedFoodTypes: [], selectedRegion: '' });
 
     function filterFoodDonationByFoodType(selectedFoodTypes) {
-        if (!selectedFoodTypes || selectedFoodTypes === 'All Foods') {
+        if (!selectedFoodTypes || selectedFoodTypes[0] === 'All Foods') {
             return foodDonationData;
         } else {
             return foodDonationData.filter((donation) => {

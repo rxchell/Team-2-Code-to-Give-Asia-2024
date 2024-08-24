@@ -114,7 +114,7 @@
 //     );
 // };
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default function FoodTypeOptions({ onChange }) {
     const [selectedFoodTypes, setSelectedFoodTypes] = useState(['All Foods']);
