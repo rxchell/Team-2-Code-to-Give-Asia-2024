@@ -4,6 +4,7 @@ import React from "react";
 
 export default function FoodDonationCard({ donationID, imageUrl, foodName, donor, region, foodTags, allergens, quantity }) {
 
+    console.log(`[In Card]\tFoodtags: ${foodTags}, Allergens: ${allergens}, foodName: ${foodName}`);
     return (
         <div className="card card-compact bg-base-100 w-5/6 mx-auto shadow-xl overflow-hidden relative hover:shadow-2xl transition-shadow duration-300 ease-in-out">
             <figure>

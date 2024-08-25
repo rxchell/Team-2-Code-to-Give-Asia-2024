@@ -54,18 +54,18 @@ export default function DonatePage() {
         <div className='flex justify-center'>
             <form className='bg-white form-content' onSubmit={handleSubmit}>
                 <h2 className='text-2xl font-bold mb-8'>Food Information</h2>
-                <div className='justify-between'>
+                <div className='justify-between flex'>
                     <label>Type</label>
-                    <div>
+                    <div className='flex flex-wrap'>
                         <label>
                             <input
                                 type="checkbox"
                                 value="Cooked food"
-                                checked={formData.foodType.includes('Cooked food')}
-                                onChange={(e) => updateFormData('foodType', 
+                                checked={formData.type.includes('Cooked food')}
+                                onChange={(e) => updateFormData('type', 
                                     e.target.checked ? 
-                                    [...formData.foodType, e.target.value] : 
-                                    formData.foodType.filter((item) => item !== e.target.value))}
+                                    [...formData.type, e.target.value] : 
+                                    formData.type.filter((item) => item !== e.target.value))}
                             />
                             Cooked food
                         </label>
@@ -73,11 +73,11 @@ export default function DonatePage() {
                             <input
                                 type="checkbox"
                                 value="Dry food"
-                                checked={formData.foodType.includes('Dry food')}
-                                onChange={(e) => updateFormData('foodType', 
+                                checked={formData.type.includes('Dry food')}
+                                onChange={(e) => updateFormData('type', 
                                     e.target.checked ? 
-                                    [...formData.foodType, e.target.value] : 
-                                    formData.foodType.filter((item) => item !== e.target.value))}
+                                    [...formData.type, e.target.value] : 
+                                    formData.type.filter((item) => item !== e.target.value))}
                             />
                             Dry food
                         </label>
@@ -85,11 +85,11 @@ export default function DonatePage() {
                             <input
                                 type="checkbox"
                                 value="Canned food"
-                                checked={formData.foodType.includes('Canned food')}
-                                onChange={(e) => updateFormData('foodType', 
+                                checked={formData.type.includes('Canned food')}
+                                onChange={(e) => updateFormData('type', 
                                     e.target.checked ? 
-                                    [...formData.foodType, e.target.value] : 
-                                    formData.foodType.filter((item) => item !== e.target.value))}
+                                    [...formData.type, e.target.value] : 
+                                    formData.type.filter((item) => item !== e.target.value))}
                             />
                             Canned food
                         </label>
@@ -97,11 +97,11 @@ export default function DonatePage() {
                             <input
                                 type="checkbox"
                                 value="Fruit"
-                                checked={formData.foodType.includes('Fruit')}
-                                onChange={(e) => updateFormData('foodType', 
+                                checked={formData.type.includes('Fruit')}
+                                onChange={(e) => updateFormData('type', 
                                     e.target.checked ? 
-                                    [...formData.foodType, e.target.value] : 
-                                    formData.foodType.filter((item) => item !== e.target.value))}
+                                    [...formData.type, e.target.value] : 
+                                    formData.type.filter((item) => item !== e.target.value))}
                             />
                             Fruit
                         </label>
@@ -114,8 +114,8 @@ export default function DonatePage() {
                     type="text"
                     required="required"
                     placeholder="Please enter the exact food name here"
-                    value={formData.foodName}
-                    onChange={(e) => updateFormData('foodName', e.target.value)}
+                    value={formData.name}
+                    onChange={(e) => updateFormData('name', e.target.value)}
                 />
                 </div>
 
@@ -136,74 +136,51 @@ export default function DonatePage() {
                         <input
                             type="number"
                             required="required"
-                            value={formData.quantity}
-                            onChange={(e) => updateFormData('quantity', e.target.value)}
+                            value={formData.servingSize}
+                            onChange={(e) => updateFormData('servingSize', e.target.value)}
                         />
                     </label>
                 </div>
                 </div>
                 
-                <div className='justify-between'>
-                <label>Produced Time</label>
                 <div>
-                    <label>
-                        Date
-                        <input
-                            type="date"
-                            required="required"
-                            value={formData.producedDate}
-                            onChange={(e) => updateFormData('producedDate', e.target.value)}
-                        />
+                <div className='justify-between'>
+                <label>Produced Time
+                    <input
+                                type="datetime-local"
+                                required="required"
+                                value={formData.producedDateTime}
+                                onChange={(e) => updateFormData('producedDateTime', e.target.value)}
+                            /> 
                     </label>
-                    <label>
-                        Time
-                        <input
-                            type="time"
-                            required="required"
-                            value={formData.producedTime}
-                            onChange={(e) => updateFormData('producedTime', e.target.value)}
-                        />
-                    </label>
-                </div>
                 </div>
                 
 
                 <div className='justify-between'>
-                <label>Consume By</label>
-                <div>
-                    <label>
-                        Date
-                        <input
-                            type="date"
-                            required="required"
-                            value={formData.consumeByDate}
-                            onChange={(e) => updateFormData('consumeByDate', e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        Time
-                        <input
-                            type="time"
-                            required="required"
-                            value={formData.consumeByTime}
-                            onChange={(e) => updateFormData('consumeByTime', e.target.value)}
-                        />
-                    </label>
+                <label>Consume By
+                    <input
+                        type="datetime-local"
+                        required="required"
+                        value={formData.consumeByDate}
+                        onChange={(e) => updateFormData('consumeByDateTime', e.target.value)}
+                    />
+                </label>
                 </div>
                 </div>
+                
 
                 <div className='justify-between'>
                 <label>Special Tags</label>
-                <div>
+                <div className='flex flex-wrap'>
                     <label>
                         <input
                             type="checkbox"
                             value="Halal"
-                            checked={formData.specialTags.includes('Halal')}
-                            onChange={(e) => updateFormData('specialTags', 
+                            checked={formData.tags.includes('Halal')}
+                            onChange={(e) => updateFormData('tags', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.tags, e.target.value] : 
+                                    formData.tags.filter((item) => item !== e.target.value))}
                         />
                         Halal
                     </label>
@@ -212,11 +189,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Vegetarian"
-                            checked={formData.specialTags.includes('Vegetarian')}
-                            onChange={(e) => updateFormData('specialTags', 
+                            checked={formData.tags.includes('Vegetarian')}
+                            onChange={(e) => updateFormData('tags', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.tags, e.target.value] : 
+                                    formData.tags.filter((item) => item !== e.target.value))}
                         />
                         Vegetarian
                     </label>
@@ -224,11 +201,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Spicy"
-                            checked={formData.specialTags.includes('Spicy')}
-                            onChange={(e) => updateFormData('specialTags', 
+                            checked={formData.tags.includes('Spicy')}
+                            onChange={(e) => updateFormData('tags', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.tags, e.target.value] : 
+                                    formData.tags.filter((item) => item !== e.target.value))}
                         />
                         Spicy
                     </label>
@@ -236,11 +213,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Gluten-Free"
-                            checked={formData.specialTags.includes('Gluten-Free')}
-                            onChange={(e) => updateFormData('specialTags', 
+                            checked={formData.tags.includes('Gluten-Free')}
+                            onChange={(e) => updateFormData('tags', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.tags, e.target.value] : 
+                                    formData.tags.filter((item) => item !== e.target.value))}
                         />
                         Gluten-Free
                     </label>
@@ -248,11 +225,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Low-Sugar"
-                            checked={formData.specialTags.includes('Low-Sugar')}
-                            onChange={(e) => updateFormData('specialTags', 
+                            checked={formData.tags.includes('Low-Sugar')}
+                            onChange={(e) => updateFormData('tags', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.tags, e.target.value] : 
+                                    formData.tags.filter((item) => item !== e.target.value))}
                         />
                         Low-Sugar
                     </label>
@@ -262,16 +239,16 @@ export default function DonatePage() {
                 
                 <div className='items-center justify-between'>
                     <label>Allergens</label>
-                    <div>
+                    <div className='flex flex-wrap'>
                     <label>
                         <input
                             type="checkbox"
                             value="Peanut"
-                            checked={formData.allergens.includes('Peanut')}
-                            onChange={(e) => updateFormData('allergens', 
+                            checked={formData.allergies.includes('Peanut')}
+                            onChange={(e) => updateFormData('allergies', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.allergies, e.target.value] : 
+                                    formData.allergies.filter((item) => item !== e.target.value))}
                         />
                         Peanut
                     </label>
@@ -279,11 +256,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Milk"
-                            checked={formData.allergens.includes('Milk')}
-                            onChange={(e) => updateFormData('allergens', 
+                            checked={formData.allergies.includes('Milk')}
+                            onChange={(e) => updateFormData('allergies', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.allergies, e.target.value] : 
+                                    formData.allergies.filter((item) => item !== e.target.value))}
                         />
                         Milk
                     </label>
@@ -291,11 +268,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Soy"
-                            checked={formData.allergens.includes('Soy')}
-                            onChange={(e) => updateFormData('allergens', 
+                            checked={formData.allergies.includes('Soy')}
+                            onChange={(e) => updateFormData('allergies', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.allergies, e.target.value] : 
+                                    formData.allergies.filter((item) => item !== e.target.value))}
                         />
                         Soy
                     </label>
@@ -303,11 +280,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Eggs"
-                            checked={formData.allergens.includes('Eggs')}
-                            onChange={(e) => updateFormData('allergens', 
+                            checked={formData.allergies.includes('Eggs')}
+                            onChange={(e) => updateFormData('allergies', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.allergies, e.target.value] : 
+                                    formData.allergies.filter((item) => item !== e.target.value))}
                         />
                         Eggs
                     </label>
@@ -315,11 +292,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Fish"
-                            checked={formData.allergens.includes('Fish')}
-                            onChange={(e) => updateFormData('allergens', 
+                            checked={formData.allergies.includes('Fish')}
+                            onChange={(e) => updateFormData('allergies', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.allergies, e.target.value] : 
+                                    formData.allergies.filter((item) => item !== e.target.value))}
                         />
                         Fish
                     </label>
@@ -327,11 +304,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Seafood"
-                            checked={formData.allergens.includes('Seafood')}
-                            onChange={(e) => updateFormData('allergens', 
+                            checked={formData.allergies.includes('Seafood')}
+                            onChange={(e) => updateFormData('allergies', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.allergies, e.target.value] : 
+                                    formData.allergies.filter((item) => item !== e.target.value))}
                         />
                         Seafood
                     </label>
@@ -339,11 +316,11 @@ export default function DonatePage() {
                         <input
                             type="checkbox"
                             value="Wheat"
-                            checked={formData.allergens.includes('Wheat')}
-                            onChange={(e) => updateFormData('allergens', 
+                            checked={formData.allergies.includes('Wheat')}
+                            onChange={(e) => updateFormData('allergies', 
                                     e.target.checked ? 
-                                    [...formData.specialTags, e.target.value] : 
-                                    formData.specialTags.filter((item) => item !== e.target.value))}
+                                    [...formData.allergies, e.target.value] : 
+                                    formData.allergies.filter((item) => item !== e.target.value))}
                         />
                         Wheat
                     </label>

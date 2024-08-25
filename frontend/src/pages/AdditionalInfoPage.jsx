@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormContext } from '../utils/FormContext';
 import './form.css';
+import axios from 'axios';
 
 export default function AdditionalInfoPage() {
     const navigate = useNavigate();
@@ -9,28 +10,28 @@ export default function AdditionalInfoPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({formData});
+        
 
         // Combine all data and submit
-        const dataToSubmit = { ...formData };
-
-        const formDataObject = new FormData();
-        for (const key in dataToSubmit) {
-            formDataObject.append(key, dataToSubmit[key]);
-        }
+        const data = { ...formData };
+        console.log(data);
 
         try {
-            await fetch('http://localhost:3000/donations', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formDataObject),
-            });
-            navigate('/');
-        } catch (error) {
-            console.error('Failed to submit the form:', error);
+            const response = await fetch('http://localhost:3000/api/donations/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: data})
+            console.log(response)
+        } catch(error) {
+            console.log(error)
         }
+        
+        // .then((response) => console.log(response.data))
+        // .then((error) => console.log(error));
+        
+        navigate('/');
     };
 
     return (
@@ -81,35 +82,31 @@ export default function AdditionalInfoPage() {
                         type="file"
                         required="required"
                         accept="image/*"
-                        onChange={(e) => updateFormData('foodPhoto', e.target.files[0])}
+                        onChange={(e) => updateFormData('imageURL', e.target.files[0])}
                         />
                     </div>
                 </div>
 
                 <div className='justify-between'>
-                <label>Collect By</label>
-                <div>
-                    <label>
-                        Date
-                        <input
-                            type="date"
-                            required="required"
-                            value={formData.collectByDate}
-                            onChange={(e) => updateFormData('collectByDate', e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        Time
-                        <input
-                            type="time"
-                            required="required"
-                            value={formData.collectByTime}
-                            onChange={(e) => updateFormData('collectByTime', e.target.value)}
-                        />
-                    </label>
-                </div>
+                <label>Collect By
+                    <input
+                        type="datetime-local"
+                        required="required"
+                        value={formData.collectBy}
+                        onChange={(e) => updateFormData('collectBy', e.target.value)}
+                    />
+                </label>
                 </div>
                 
+                <div className='justify-between'>
+                <label>Reheat Instructions</label>
+                <input
+                    type="text"
+                    value={formData.storeReheatInstructions}
+                    onChange={(e) => updateFormData('storeReheatInstructions', e.target.value)}
+                />
+                </div>
+
                 <div className='justify-between'>
                 <label>Additional Notes</label>
                 <input

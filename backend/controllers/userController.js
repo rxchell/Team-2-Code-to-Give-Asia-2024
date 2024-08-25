@@ -6,12 +6,23 @@ import { auth, firestore } from "../configfirebase.js";
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   // TODO add other fields once form confirmed
-  const { name, email, password, phoneNumber, userRole } = req.body;
+  const { organisationName,
+    password,
+    area,
+    address,
+    postalCode,
+    operationHour,
+    entityNature,
+    uploadCertificate,
+    accountType,
+    contactPerson,
+    contactNumber,
+    contactEmail, } = req.body;
 
   const user = await auth.createUser({
-    displayName: name,
-    email: email,
-    phoneNumber: phoneNumber,
+    displayName: organisationName,
+    email: contactEmail,
+    phoneNumber: contactNumber,
     password: password
   });
 
@@ -19,27 +30,34 @@ const registerUser = asyncHandler(async (req, res) => {
     const userId = user.uid
     const userDocRef = firestore.collection('users').doc(userId)
 
-    // setting userRole
+    // setting accountType
     let isAdmin = false;
     let isAgency = false;
     let isDonor = false;
-    if (userRole && userRole == 'admin') {
+    if (accountType && accountType == 'admin') {
       isAdmin = true;
-    } else if (userRole && userRole == 'agency') {
+    } else if (accountType && accountType == 'agency') {
       isAgency = true;
-    } else if (userRole && userRole == 'donor') {
+    } else if (accountType && accountType == 'donor') {
       isDonor = true;
     }
 
     // stores user information
     userDocRef.set({
-      name: name,
-      email: email,
-      phoneNumber: phoneNumber,
-      isAdmin: isAdmin,
-      isAgency: isAgency,
-      isDonor: isDonor
-      // TODO include other information once confirmed
+      id: userId,
+      isAdmin,
+      isAgency,
+      isDonor,
+      organisationName,
+      area,
+      address,
+      postalCode,
+      operationHour,
+      entityNature,
+      uploadCertificate,
+      contactPerson,
+      contactNumber,
+      contactEmail,
     })
     res.status(200).json({
       message: "user registered successfully"

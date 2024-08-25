@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import DonorRecordPage from './pages/DonorRecordPage'
 import BeneficiaryRecordPage from './pages/BeneficiaryRecordPage'
+import CreateNewBeneficiaryPage from './pages/CreateNewBeneficiaryPage'
 import AdminRecordPage from './pages/AdminRecordPage'
 import FoodDonationListingPage from './pages/FoodDonationListingPage'
 import FoodOrderPage from './pages/FoodOrderPage'
@@ -40,10 +41,12 @@ export default function App() {
                     <Route path="/user/record" element={<BeneficiaryRecordPage />} />
                     <Route path="/admin/home" element={<AdminRecordPage />} />
                     <Route path="/agency/manage-user" element={<AgencyManagePage />} />
+                    <Route path="/agency/manage-user/add-user" element={<CreateNewBeneficiaryPage />} />
                     <Route path="/donate" element={<DonatePage />} />
                     <Route path="/guidelines" element={<GuidelinesPage />} />
                     <Route path="/donate/additional-information" element={<AdditionalInfoPage />} />
                     <Route path="/user/home/food-order" element={<FoodOrderPage />} />
+
                     {/* <Route path="/user/home/food-order/:id" element={<FoodOrderPage />} /> */}
                     <Route path='*' element={<h1>Not Found</h1>} />
                 </Route>

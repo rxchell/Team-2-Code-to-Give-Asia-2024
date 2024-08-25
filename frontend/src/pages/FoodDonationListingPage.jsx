@@ -97,6 +97,8 @@ export default function FoodDonationListingPage() {
             <h1 className='pb-4 text-3xl text-gray-900 font-bold border-b-2 border-gray-400'>Home - Choose what you need !</h1>
             <OptionsBar onSearch={handleSearch} />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-8 gap-y-8">
+                {console.log(filteredData.length)}
+                {console.log(filteredData)}
                 {filteredData.map((donation) => (
                     <FoodDonationCard
                         key={donation["donationID"]}
