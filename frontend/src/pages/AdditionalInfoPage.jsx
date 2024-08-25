@@ -16,14 +16,21 @@ export default function AdditionalInfoPage() {
         const data = { ...formData };
         console.log(data);
 
-        const response = await fetch('api/donations', {
+        try {
+            const response = await fetch('http://localhost:3000/api/donations/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: data})
-        .then((response) => console.log(response.data))
-        .then((error) => console.log(error));
+            console.log(response)
+        } catch(error) {
+            console.log(error)
+        }
+        
+        // .then((response) => console.log(response.data))
+        // .then((error) => console.log(error));
+        
         navigate('/');
     };
 
