@@ -6,9 +6,10 @@ import authRoute from './routes/authRoute.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 const app = express()
-const PORT = 3000
+const PORT = 5173
 
 // logging middleware
 app.use(morgan('dev'));
@@ -28,6 +29,8 @@ app.use('/api/users', userRoute)
 app.use('/api/donations', donationRoute)
 app.use('/api/orders', orderRoute)
 app.use('/api/auth', authRoute)
+
+app.use(cors());
 
 app.use(notFound)
 app.use(errorHandler)

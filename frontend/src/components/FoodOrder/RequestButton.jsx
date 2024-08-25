@@ -1,12 +1,31 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-export default function RequestButton() {
+export default function RequestButton({ quantity }) {
     const [showAlert, setShowAlert] = useState(false);
 
-    const handleRequest = () => {
+    async function handleRequest() {
         setShowAlert(true);
+
+        try {
+            const response = await axios.post("http://localhost:3000/api/orders/SpcKIGZ56HV8pLq5BwStEA2gWBg1", {
+                donationId: "3JLMq7WL37IgxLYieQQ8",
+                quantity: quantity,
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+
         setTimeout(() => setShowAlert(false), 2000);
-    };
+    }
+
+        // axios.post("http://localhost:3000/api/orders/SpcKIGZ56HV8pLq5BwStEA2gWBg1", {
+        //     donationId: "3JLMq7WL37IgxLYieQQ8",
+        //     quantity: 5,
+        // }).then (response => {
+        //     console.log(response.data);
+        // })
 
     return (
         <>

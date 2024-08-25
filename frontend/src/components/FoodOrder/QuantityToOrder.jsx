@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function QuantityCounter({ initialQuantity }) {
-    const [quantity, setQuantity] = useState(0); // Start at 0
-
+export default function QuantityCounter({ quantity, setQuantity, initialQuantity }) {
     const handleIncrement = () => {
         if (quantity < initialQuantity) {
             setQuantity(quantity + 1);
