@@ -27,7 +27,7 @@ export default function LoginPage() {
   }
 
   if (redirect) {
-    return <Navigate to="/" />; // TODO: add navigation after login
+    return <Navigate to="/" />;
   }
 
   return (
