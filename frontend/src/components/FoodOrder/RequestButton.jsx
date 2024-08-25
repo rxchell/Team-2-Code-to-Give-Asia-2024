@@ -1,10 +1,31 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-export default function RequestButton() {
+export default function RequestButton({quantity}) {
     const [showAlert, setShowAlert] = useState(false);
 
     const handleRequest = () => {
         setShowAlert(true);
+
+        try { axios.post('/api/orders/1234', {
+            donationId: 1234,
+            quantity,
+        })
+                .then(function (response) {
+                    // handle success
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        } catch (error) {
+            console.error(error);
+        }
+
         setTimeout(() => setShowAlert(false), 2000);
     };
 
