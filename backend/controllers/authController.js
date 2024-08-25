@@ -33,7 +33,7 @@ const loginUser = asyncHandler(async (req, res) => {
         const token = await user.getIdToken()
 
         res.cookie('jwt', token, {
-            httpOnly: true, secure: true, sameSite: 'strict', maxAge: 5 * 60 * 1000 // 5 mins 
+            httpOnly: true, secure: true, sameSite: 'strict', maxAge: 60 * 60 * 1000 // 1 hour 
         });
         res.json({ message: "login successful", user })
     }
