@@ -55,6 +55,7 @@ export default function FoodDonationCard({ donationID, imageUrl, foodName, donor
                 </div>
                 <div className="card-actions justify-center my-5">
                 <Link to={`food-order/${donationID}`} className="w-4/5 py-2 px-4 cursor-pointer rounded-lg text-gray-950 font-bold text-xl bg-secondary bg-opacity-80 hover:bg-opacity-100 transition-colors duration-300 border-0">Reserve</Link>
+                {/* <Link to={`/user/home/food-order/${donationID}`} className="w-4/5 py-2 px-4 cursor-pointer rounded-lg text-gray-950 font-bold text-xl bg-secondary bg-opacity-80 hover:bg-opacity-100 transition-colors duration-300 border-0">Reserve</Link> */}
                 </div>
             </div>
         </div>
