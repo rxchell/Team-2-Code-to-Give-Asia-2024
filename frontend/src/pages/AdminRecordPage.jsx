@@ -8,21 +8,6 @@ export default function AdminRecordPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //     fetchDonorRecords();
-    // }, []);
-
-    // const fetchDonorRecords = async () => {
-    //     try {
-    //         setLoading(true);
-    //         const response = await axios.get('/api/donor-records'); 
-    //         setDonorRecords(response.data);
-    //         setLoading(false);
-    //     } catch (err) {
-    //         setError('Error fetching donor records. Please try again later.');
-    //         setLoading(false);
-    //     }
-    // };
     useEffect(() => {
         const fetchAllOrders = async () => {
             try {
@@ -42,11 +27,6 @@ export default function AdminRecordPage() {
                     // console.log(itemData);
                 });
 
-
-
-
-
-
                 setAllRecords(dataArray);
                 setLoading(false);
             } catch (err) {
@@ -57,11 +37,6 @@ export default function AdminRecordPage() {
 
         fetchAllOrders();
     }, []);
-
-    // useEffect(() => {
-    //     setAllRecords(FakeTransaction);
-    //     setLoading(false);
-    // }, []);
 
     console.log(allRecords);
 
