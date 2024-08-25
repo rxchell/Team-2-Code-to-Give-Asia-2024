@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+
 // import AdminFoodDetailsTable from "./AdminFoodDetailsTable";
 
-import FakeBeneficiaryAccount from "../../FakeBeneficiaryAccount";
+import FakeBeneficiaryAccount from "../../FakeBeneficiaryAccount.js";
 import { Link } from "react-router-dom";
 
 export default function AgencyManageTable() {
@@ -31,7 +32,7 @@ export default function AgencyManageTable() {
                 </thead>
                 <tbody>
                     {data.map((item, index) => (
-                        <React.Fragment key={item.id}>
+                        <React.Fragment key={item.userID}>
                             <tr
                                 className={`cursor-pointer text-gray-900 text-lg font-semibold ${expandedRow === index ? 'bg-[#c5ec97] bg-opacity-50 border-0' : 'bg-white border-b border-gray-400'} hover:bg-[#c5ec97] hover:bg-opacity-50`}
                                 onClick={() => toggleRow(index)}

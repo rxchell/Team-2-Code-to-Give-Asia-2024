@@ -3,32 +3,28 @@ import { useState } from "react";
 import axios from "axios";
 
 
-export default function RegisterPage() {
+export default function CreateNewBeneficiaryPage() {
   const [formData, setFormData] = useState({
-    organisationName: '',
+    name: '',
     password: '',
     area: '',
     address: '',
     postalCode: '',
-    operationHour: '',
-    entityNature: '',
-    uploadCertificate: null,
-    accountType: '',
-    contactPerson: '',
+    quotaPerWeek: '',
+    foodAllergy: '',
     contactNumber: '',
     contactEmail: '',
     terms: false,
   });
 
   const [errors, setErrors] = useState({
-    organisationName: '',
+    name: '',
     password: '',
     area: '',
     address: '',
     postalCode: '',
-    operationHour: '',
-    entityNature: '',
-    contactPerson: '',
+    quotaPerWeek: '',
+    foodAllergy: '',
     contactNumber: '',
     contactEmail: '',
     terms: '',
@@ -38,11 +34,8 @@ export default function RegisterPage() {
   const [popupAccepted, setPopupAccepted] = useState(false);
 
   function handleChange(e) {
-    const { name, value, type, checked, files } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: type === 'checkbox' ? checked : type === 'file' ? files[0] : value,
-    }));
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   }
 
   function handlePopupChange(e) {
@@ -53,58 +46,43 @@ export default function RegisterPage() {
     e.preventDefault();
     const newErrors = {};
 
-    Object.keys(formData).forEach(field => {
-      if (!formData[field] && field !== 'uploadCertificate') {
-        newErrors[field] = `${field.replace(/([A-Z])/g, ' $1').toUpperCase()} is required.`;
-      }
-    });
-
     if (!formData.terms) {
       newErrors.terms = 'You must agree to the terms and conditions.';
     }
 
-    if (formData.accountType === 'donor') {
-        if (!popupAccepted) {
-          setShowPopup(true);
-          return;
-        }
-    }
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
       // Perform registration logic here
-      try {
-        await axios.post('/register', {
-            organisationName,
-            password,
-            area,
-            address,
-            postalCode,
-            operationHour,
-            entityNature,
-            uploadCertificate,
-            accountType,
-            contactPerson,
-            contactNumber,
-            contactEmail,
-        });
-        alert('Registration successful! You can log in now.');
-        // toast('🦄 Wow so easy!', {
-        //     position: "top-right",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "light",
-        //     transition: Bounce,
-        // });
-    } catch (error) {
-        alert('Registration failed. Please try again.');
-    }
-      alert('Registration successful!');
+    //   try {
+    //     await axios.post('/register', {
+    //         organisationName,
+    //         password,
+    //         area,
+    //         address,
+    //         postalCode,
+    //         quotaPerWeek,
+    //         foodAllergy,
+    //         contactNumber,
+    //         contactEmail,
+    //     });
+    //     // alert('Registration successful! You can log in now.');
+    //     // toast('🦄 Wow so easy!', {
+    //     //     position: "top-right",
+    //     //     autoClose: 5000,
+    //     //     hideProgressBar: false,
+    //     //     closeOnClick: true,
+    //     //     pauseOnHover: true,
+    //     //     draggable: true,
+    //     //     progress: undefined,
+    //     //     theme: "light",
+    //     //     transition: Bounce,
+    //     // });
+    // } catch (error) {
+    //     alert('Registration failed. Please try again.');
+    // }
+    //   alert('Registration successful!');
     }
   }
 
@@ -131,14 +109,13 @@ export default function RegisterPage() {
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="organisationName" className="block text-sm font-medium text-gray-700">
-                  Organisation name
+                  Name
                 </label>
                 <input
                   type="text"
-                  id="organisationName"
-                  name="organisationName"
-                  placeholder="Please enter the full name of your organisation"
-                  value={formData.organisationName}
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
                   required
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -212,13 +189,13 @@ export default function RegisterPage() {
 
               <div>
                 <label htmlFor="operationHour" className="block text-sm font-medium text-gray-700">
-                  Operation hour
+                  Quota for each week
                 </label>
                 <input
                   type="text"
-                  id="operationHour"
-                  name="operationHour"
-                  value={formData.operationHour}
+                  id="quotaPerWeek"
+                  name="quotaPerWeek"
+                  value={formData.quotaPerWeek}
                   onChange={handleChange}
                   required
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -228,13 +205,12 @@ export default function RegisterPage() {
 
               <div>
                 <label htmlFor="entityNature" className="block text-sm font-medium text-gray-700">
-                  Entity nature
+                  Food Allergy Information
                 </label>
-                <input
-                  type="text"
-                  id="entityNature"
-                  name="entityNature"
-                  value={formData.entityNature}
+                <textarea
+                  id="foodAllergy"
+                  name="foodAllergy"
+                  value={formData.foodAllergy}
                   onChange={handleChange}
                   required
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -242,77 +218,13 @@ export default function RegisterPage() {
                 {errors.entityNature && <p className="text-red-500 text-xs mt-1">{errors.entityNature}</p>}
               </div>
 
-              <div>
-                <label htmlFor="uploadCertificate" className="block text-sm font-medium text-gray-700">
-                  Upload entity certificate
-                </label>
-                <input
-                  type="file"
-                  id="uploadCertificate"
-                  name="uploadCertificate"
-                  onChange={handleChange}
-                  className="mt-1 block w-full text-gray-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Account type
-                </label>
-                <div className="mt-1 flex items-center">
-                  <input
-                    id="donor"
-                    name="accountType"
-                    type="radio"
-                    value="donor"
-                    checked={formData.accountType === 'donor'}
-                    onChange={handleChange}
-                    className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
-                    required
-                  />
-                  <label htmlFor="donor" className="ml-3 block text-sm font-medium text-gray-700">
-                    Donor
-                  </label>
-                </div>
-                <div className="mt-1 flex items-center">
-                  <input
-                    id="beneficiary"
-                    name="accountType"
-                    type="radio"
-                    value="beneficiary"
-                    checked={formData.accountType === 'beneficiary'}
-                    onChange={handleChange}
-                    className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
-                    required
-                  />
-                  <label htmlFor="beneficiary" className="ml-3 block text-sm font-medium text-gray-700">
-                    Beneficiary Agency
-                  </label>
-                </div>
-                {errors.accountType && <p className="text-red-500 text-xs mt-1">{errors.accountType}</p>}
-              </div>
             </div>
           </div>
 
           {/* Contact Information Section */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Contact Information</h3>
+            {/* <h3 className="text-lg font-semibold text-gray-900">Contact Information</h3> */}
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="contactPerson" className="block text-sm font-medium text-gray-700">
-                  Contact person
-                </label>
-                <input
-                  type="text"
-                  id="contactPerson"
-                  name="contactPerson"
-                  value={formData.contactPerson}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-                {errors.contactPerson && <p className="text-red-500 text-xs mt-1">{errors.contactPerson}</p>}
-              </div>
 
               <div>
                 <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700">
