@@ -19,17 +19,17 @@ export const client_auth = getAuth(app);
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    // let user = await auth.getUserByPhoneNumber(phoneNumber)
-    // if (!user) {
-    //     throw new Error("No user with this phone number")
-    // }
-    // const userEmail = user.email
+    const { phoneNumber, password } = req.body;
+    let user = await auth.getUserByPhoneNumber(phoneNumber)
+    if (!user) {
+        throw new Error("No user with this phone number")
+    }
+    const userEmail = user.email
 
-    const userCredential = await signInWithEmailAndPassword(client_auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(client_auth, userEmail, password);
 
     if (userCredential) {
-        const user = userCredential.user
+        user = userCredential.user
         const token = await user.getIdToken()
 
         res.cookie('jwt', token, {
