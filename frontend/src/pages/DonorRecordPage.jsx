@@ -24,11 +24,6 @@ export default function DonorRecordPage() {
     //     }
     // };
 
-    useEffect(() => {
-        setDonorRecords(FakeTransaction);
-        setLoading(false);
-    }, []);
-
 
     return (
         // <div>

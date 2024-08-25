@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BeneficiaryFoodDetailsTable from "./BeneficiaryFoodDetailsTable";
-
+import axios from 'axios';
 import FakeTransaction from "../../FakeTransaction";
 
 export default function BeneficiaryRecordTable() {
     const [expandedRow, setExpandedRow] = useState(null);
+    const [beneficiaryRecords, setBeneficiaryRecords] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const toggleRow = (index) => {
         setExpandedRow(expandedRow === index ? null : index);
@@ -23,6 +26,23 @@ export default function BeneficiaryRecordTable() {
 
     // TODO - Replace with actual fetch request
     // Use orderRoute
+    useEffect(() => {
+        const fetchBeneficiaryRecords = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('/api/orders'); 
+                console.log(response.data)
+                setBeneficiaryRecords(response.data);
+                setLoading(false);
+            } catch (err) {
+                alert(err.response.data.error);
+                setError('Error fetching beneficiary records. Please try again later.');
+                setLoading(false);
+            }
+        };
+
+        fetchBeneficiaryRecords();
+    }, []);
 
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">
