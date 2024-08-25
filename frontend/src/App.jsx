@@ -12,6 +12,7 @@ import BeneficiaryRecordPage from './pages/BeneficiaryRecordPage'
 import AdminRecordPage from './pages/AdminRecordPage'
 import FoodDonationListingPage from './pages/FoodDonationListingPage'
 import FoodOrderPage from './pages/FoodOrderPage'
+import RegisterBeneficiaryPage from './pages/RegisterBeneficiaryPage'
 
 // axios.defaults.baseURL = "http://localhost:3000/";
 // axios.defaults.withCredentials = true;
@@ -27,6 +28,7 @@ export default function App() {
                     <Route path="/donor/home" element={<DonorRecordPage />} />
                     <Route path="/user/home" element={<FoodDonationListingPage />} />
                     <Route path="/user/home/food-order" element={<FoodOrderPage />} />
+                    <Route path="/agency/manage-user/add-user" element={<RegisterBeneficiaryPage />} />
                     {/* <Route path="/user/home/food-order/:id" element={<FoodOrderPage />} /> */}
                     <Route path="/user/record" element={<BeneficiaryRecordPage />} />
                     <Route path="/admin/home" element={<AdminRecordPage />} />
