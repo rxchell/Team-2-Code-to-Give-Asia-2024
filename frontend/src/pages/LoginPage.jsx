@@ -17,13 +17,14 @@ export default function LoginPage() {
         password,
       });
       alert("login successful");
+      setRedirect(true);
     } catch (err) {
       alert(err.response.data.error);
     }
   }
 
   if (redirect) {
-    return <Navigate to="/" />; // TODO: add navigation after login
+    return <Navigate to="/" />;
   }
 
   return (

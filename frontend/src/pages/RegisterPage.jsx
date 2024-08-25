@@ -36,6 +36,7 @@ export default function RegisterPage() {
 
   const [showPopup, setShowPopup] = useState(false);
   const [popupAccepted, setPopupAccepted] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   function handleChange(e) {
     const { name, value, type, checked, files } = e.target;
@@ -96,6 +97,7 @@ export default function RegisterPage() {
         });
 
         alert("Registration successful!");
+        setRedirect(true);
       } catch (err) {
         console.log(err);
         alert(err.response.data.error);
@@ -113,6 +115,10 @@ export default function RegisterPage() {
       //     transition: Bounce,
       // });
     }
+  }
+
+  if (redirect) {
+    return <Navigate to="/" />;
   }
 
   function handlePopupSubmit() {

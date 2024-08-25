@@ -19,6 +19,7 @@ export default function AdditionalInfoPage() {
     }
     console.log(bodyFormData);
 
+
     try {
       await axios({
         method: "post",
@@ -34,21 +35,15 @@ export default function AdditionalInfoPage() {
     }
   };
 
-  return (
-    <>
-      <div className="flex flex-col items-center w-full">
-        <div className="flex items-center space-x-2 mt-4">
-          <p className="text-2xl font-bold">
-            {" "}
-            Donate >> Food Information >> Additional Information
-          </p>
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-circle btn-ghost btn-xs text-info"
-            >
-              <svg
+    return (
+        <>
+        <div className='flex flex-col items-center w-full'>
+        <div className='flex items-center space-x-2 mt-4'>
+            <p className='text-2xl font-bold'> Donate &gt;&gt; Food Information &gt;&gt; Additional Information</p>
+            <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn btn-circle btn-ghost btn-xs text-info">
+                <svg
+
                 tabIndex={0}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
