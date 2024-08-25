@@ -1,0 +1,55 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Optional padding */
+}
+
+.form-content {
+    justify-self: center;
+    width: 90%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+label input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+label {
+    margin-right: 20px;
+}
+
+select[multiple] {
+    height: 100px;
+}
+

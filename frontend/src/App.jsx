@@ -18,9 +18,10 @@ import FoodOrderPage from './pages/FoodOrderPage'
 // import AdminRecordPage from './pages/AdminRecordPage'
 // import FoodDonationListingPage from './pages/FoodDonationListingPage'
 import GuidelinesPage from './pages/GuidelinesPage'
+import AdditionalInfoPage from './pages/AdditionalInfoPage'
 import DonatePage from './pages/DonatePage'
 import AgencyManagePage from './pages/AgencyManagePage'
-
+import { FormProvider } from './utils/FormContext'
 
 // axios.defaults.baseURL = "http://localhost:3000/";
 // axios.defaults.withCredentials = true;
@@ -28,6 +29,7 @@ import AgencyManagePage from './pages/AgencyManagePage'
 export default function App() {
     return (
         // <UserContextProvider>
+        <FormProvider>
             <Routes>
                 <Route path="/" element={<Layout />} >
                     <Route index element={<HomePage />} />
@@ -39,12 +41,15 @@ export default function App() {
                     <Route path="/admin/home" element={<AdminRecordPage />} />
                     <Route path="/agency/manage-user" element={<AgencyManagePage />} />
                     <Route path="/donate" element={<DonatePage />} />
+                    <Route path="/donate/additional-information" element={<AdditionalInfoPage />} />
                     <Route path="/guidelines" element={GuidelinesPage}/>
                     <Route path="/user/home/food-order" element={<FoodOrderPage />} />
                     {/* <Route path="/user/home/food-order/:id" element={<FoodOrderPage />} /> */}
                     <Route path='*' element={<h1>Not Found</h1>} />
                 </Route>
             </Routes>
+        </FormProvider>
+            
         // </UserContextProvider>
     )
 }
