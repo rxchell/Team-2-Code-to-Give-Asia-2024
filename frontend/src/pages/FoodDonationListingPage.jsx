@@ -6,18 +6,19 @@ import FoodDonationData from "../FakeFoodDonation";
 import axios from 'axios';
 
 export default function FoodDonationListingPage() {
-    let foodDonationData = FoodDonationData;
-    const [filteredData, setFilteredData] = useState(foodDonationData);
-    const [intermediateFilteredData, setIntermediateFilteredData] = useState(foodDonationData);
+    // let foodDonationData = FoodDonationData;
+    const [allData, setAllData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [intermediateFilteredData, setIntermediateFilteredData] = useState([]);
     const [searchParams, setSearchParams] = useState({ selectedFoodTypes: [], selectedRegion: '' });
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     function filterFoodDonationByFoodType(selectedFoodTypes) {
         if (!selectedFoodTypes || selectedFoodTypes[0] === 'All Foods') {
-            return foodDonationData;
+            return allData;
         } else {
-            return foodDonationData.filter((donation) => {
+            return allData.filter((donation) => {
                 return selectedFoodTypes.every((foodType) => donation.tags.includes(foodType));
             });
         }
@@ -44,7 +45,16 @@ export default function FoodDonationListingPage() {
             try {
                 setIsLoading(true);
                 // const response = await axios.get('http://localhost:3000/api/donations');
-                const response = foodDonationData;
+                // console.log(`response: ${response}`);
+
+                const response = await fetch("http://localhost:3000/api/donations");
+                let jsonData = await response.json();
+                // console.log(`jsonData: ${jsonData}`);
+                // console.log(`jsonData[0]: ${jsonData[0]}`);
+                // console.log(`jsonData[0].foodName: ${jsonData[0].foodName}`);
+
+
+                // const response = foodDonationData;
     
                 // const dataArray = [];
                 // response.forEach((item) => {
@@ -60,8 +70,9 @@ export default function FoodDonationListingPage() {
                 // console.log(`[In Page]\n${dataArray}`);
                 // console.log(dataArray[0].allergies);
                 // console.log(dataArray[0].tags);
-                setFilteredData(response);
-                setIntermediateFilteredData(response)
+                setAllData(jsonData);
+                setFilteredData(jsonData);
+                setIntermediateFilteredData(jsonData)
                 setIsLoading(false);
             } catch (err) {
                 setError('An error occurred while fetching the data. Please try again later.');
@@ -90,16 +101,27 @@ export default function FoodDonationListingPage() {
                 {console.log(filteredData)}
                 {filteredData.map((donation) => (
                     <FoodDonationCard
-                        key={donation.donationID}
-                        donationID={donation.donationID}
-                        imageUrl={donation.imageURL}
-                        foodName={donation.name}
-                        donor={donation.donor}      
-                        region={donation.region}    
-                        foodTags={donation.tags}
-                        allergens={donation.allergies}
-                        quantity={donation.servingSize}
+                        key={donation["donationID"]}
+                        donationID={donation["donationID"]}
+                        imageUrl={donation["imageURL"]}
+                        foodName={donation["name"]}
+                        donor={donation["donor"]}  
+                        region={donation["region"]}   
+                        foodTags={donation["tags"]}
+                        allergens={donation["allergies"]}
+                        quantity={donation["servingSize"]}
                     />
+                    // <FoodDonationCard
+                    //     key={donation.donationID}
+                    //     donationID={donation.donationID}
+                    //     imageUrl={donation.imageURL}
+                    //     foodName={donation.foodName}
+                    //     donor={donation.donor}   // NA   
+                    //     region={donation.region}    // NA
+                    //     foodTags={donation.specialTags}
+                    //     allergens={donation.allergens}
+                    //     quantity={donation.quantity}
+                    // />
                 ))}
             </div>
         </div>
