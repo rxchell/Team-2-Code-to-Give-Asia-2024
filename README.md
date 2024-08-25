@@ -14,9 +14,13 @@ Our platform is designed to streamline food donation and distribution by connect
 10. **Quota and Account Information**: Beneficiaries can view their account details and remaining quota to manage their food requests within allocated limits.
 11. **Account Application Review**: The Food Bank reviews donor and agency account applications, deciding on approval or rejection based on the provided information.
 
+# Tech Stack
+- Frontend: React, JavaScript, DaisyUI
+- Backend: Firebase, Express, Postman
+
 # Starting the website
-- Frontend: npm install, npm run dev
-- Backend: npm install, node server.js
+- Frontend: `npm install`, `npm run dev`
+- Backend: `npm install`, `node server.js`
 
 # Branch convention and Dev Process
 1. Create a branch off main in the following format `FE/<feature_name_or_fix>` or `BE/<feature_name_or_fix>`
