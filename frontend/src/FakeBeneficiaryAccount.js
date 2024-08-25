@@ -1,0 +1,122 @@
+export default [
+    {
+        "userID": "U001",
+        "name": "John Doe",
+        "region": "North",
+        "address": "123 Main St",
+        "postalCode": "12345",
+        "weeklyQuota": 100,
+        "remainingQuota": 50,
+        "foodAllergies": ["Peanuts", "Shellfish"],
+        "contactNumber": "555-1234",
+        "contactEmail": "john.doe@example.com"
+    },
+    {
+        "userID": "U002",
+        "name": "Jane Smith",
+        "region": "South",
+        "address": "456 Oak Rd",
+        "postalCode": "67890",
+        "weeklyQuota": 75,
+        "remainingQuota": 50,
+        "foodAllergies": ["Dairy"],
+        "contactNumber": "555-5678",
+        "contactEmail": "jane.smith@example.com"
+    },
+    {
+        "userID": "U003",
+        "name": "Michael Johnson",
+        "region": "East",
+        "address": "789 Elm St",
+        "postalCode": "54321",
+        "weeklyQuota": 120,
+        "remainingQuota": 50,
+        "foodAllergies": ["Gluten"],
+        "contactNumber": "555-9012",
+        "contactEmail": "michael.johnson@example.com"
+    },
+    {
+        "userID": "U004",
+        "name": "Emily Davis",
+        "region": "West",
+        "address": "321 Oak Ln",
+        "postalCode": "98765",
+        "weeklyQuota": 90,
+        "remainingQuota": 50,
+        "foodAllergies": ["Soy"],
+        "contactNumber": "555-3456",
+        "contactEmail": "emily.davis@example.com"
+    },
+    {
+        "userID": "U005",
+        "name": "David Lee",
+        "region": "North",
+        "address": "654 Maple Rd",
+        "postalCode": "24680",
+        "weeklyQuota": 110,
+        "remainingQuota": 50,
+        "foodAllergies": ["Tree Nuts"],
+        "contactNumber": "555-7890",
+        "contactEmail": "david.lee@example.com"
+    },
+    {
+        "userID": "U006",
+        "name": "Sarah Chen",
+        "region": "South",
+        "address": "987 Pine St",
+        "postalCode": "13579",
+        "weeklyQuota": 80,
+        "remainingQuota": 50,
+        "foodAllergies": ["Eggs"],
+        "contactNumber": "555-2468",
+        "contactEmail": "sarah.chen@example.com"
+    },
+    {
+        "userID": "U007",
+        "name": "Tom Wilson",
+        "region": "East",
+        "address": "246 Oak Ave",
+        "postalCode": "97531",
+        "weeklyQuota": 105,
+        "remainingQuota": 50,
+        "foodAllergies": ["Wheat"],
+        "contactNumber": "555-6789",
+        "contactEmail": "tom.wilson@example.com"
+    },
+    {
+        "userID": "U008",
+        "name": "Olivia Garcia",
+        "region": "West",
+        "address": "369 Maple Ln",
+        "postalCode": "86420",
+        "weeklyQuota": 95,
+        "remainingQuota": 50,
+        "foodAllergies": ["Fish"],
+        "contactNumber": "555-0123",
+        "contactEmail": "olivia.garcia@example.com"
+    },
+    {
+        "userID": "U009",
+        "name": "William Kim",
+        "region": "North",
+        "address": "753 Pine Rd",
+        "postalCode": "42086",
+        "weeklyQuota": 85,
+        "remainingQuota": 50,
+        "foodAllergies": ["Sesame"],
+        "contactNumber": "555-4567",
+        "contactEmail": "william.kim@example.com"
+    },
+    {
+        "userID": "U010",
+        "name": "Isabella Patel",
+        "region": "South",
+        "address": "159 Elm Ct",
+        "postalCode": "31415",
+        "weeklyQuota": 115,
+        "remainingQuota": 50,
+        "foodAllergies": ["Milk"],
+        "contactNumber": "555-8901",
+        "contactEmail": "isabella.patel@example.com"
+    }
+];

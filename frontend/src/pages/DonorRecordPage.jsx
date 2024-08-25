@@ -39,8 +39,8 @@ export default function DonorRecordPage() {
         //         <RecordTable records={donorRecords} />
         //     )}
         // </div>
-        <div className='p-4'>
-            <h1 className='pb-8 text-3xl text-gray-900 font-bold'>Donor Records</h1>
+        <div className='p-4 mx-24 my-8'>
+            <h1 className='pb-8 text-3xl text-gray-900 font-bold'>Home - Donor Records</h1>
             <DonorRecordTable />
         </div>
     );
