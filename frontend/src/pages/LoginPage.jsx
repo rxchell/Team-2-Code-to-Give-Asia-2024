@@ -11,18 +11,14 @@ export default function LoginPage() {
 
   async function handleLoginSubmit(e) {
     e.preventDefault();
-
-    const res = await axios.post("/api/auth/login", {
-      phoneNumber,
-      password,
-    });
-    if (!res.error) {
-      // Assume setUser is a function to update user state
-      // setUser(data);
-      alert("Login successful!");
-      setRedirect(true);
-    } else {
-      alert(res.error);
+    try {
+      const res = await axios.post("/api/auth/login", {
+        phoneNumber,
+        password,
+      });
+      alert("login successful");
+    } catch (err) {
+      alert(err.response.data.error);
     }
   }
 

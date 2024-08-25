@@ -7,7 +7,8 @@ const COLLECTION_NAME = 'orders'
 // @route   GET /api/orders/:userId
 // @access  Private
 const getAllOrders = asyncHandler(async (req, res) => {
-    const userId = req.params.userId;
+    // const userId = req.params.userId;
+    const userId = req.user
     let orders = [];
 
     const querySnapshot = await firestore.collection(COLLECTION_NAME)
@@ -29,7 +30,8 @@ const getAllOrders = asyncHandler(async (req, res) => {
 // @route   GET /api/orders/:userId/:orderId
 // @access  Private
 const getOrderById = asyncHandler(async (req, res) => {
-    const { userId, orderId } = req.params;
+    const userId = req.user
+    const orderId = req.params;
     
     const queryDoc = await firestore.collection(COLLECTION_NAME).doc(orderId).get();
     const order = queryDoc.data();
@@ -46,7 +48,8 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @route   POST /api/orders/:userId/
 // @access  Private
 const createOrder = asyncHandler(async (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.user
+    // const userId = req.params.userId;
     const { quantity, donationId } = req.body;
     const defaultStatus = "Pending"
 
@@ -54,6 +57,17 @@ const createOrder = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('quantity and donationId fields are required');
     }
+
+    const donationRef = firestore.collection('donations').doc(donationId);
+    const doc = await donationRef.get();
+    const currentData = doc.data();
+
+    let newQuantity = currentData.servingSize - quantity
+
+    const updateData = {
+        "servingSize": newQuantity,
+        updatedAt: new Date().toISOString()
+    };
 
     const orderBody = {
         userId: userId,
@@ -63,9 +77,10 @@ const createOrder = asyncHandler(async (req, res) => {
         createdAt: new Date().toISOString()
     };
     
-    const docRef = await firestore.collection(COLLECTION_NAME).add(orderBody);   
+    const docRef = await firestore.collection(COLLECTION_NAME).add(orderBody);
+    await donationRef.update(updateData); 
+
     const newDoc = await docRef.get();
-    
     res.status(201).json({
         id: docRef.id,
         ...newDoc.data()
@@ -76,7 +91,8 @@ const createOrder = asyncHandler(async (req, res) => {
 // @route   POST /api/orders/:userId/:orderId
 // @access  Private
 const updateOrder = asyncHandler(async (req, res) => {
-    const { userId, orderId } = req.params;
+    const userId = req.user
+    const orderId = req.params.orderId;
     
     const orderRef = firestore.collection(COLLECTION_NAME).doc(orderId);
     const doc = await orderRef.get();
@@ -93,8 +109,22 @@ const updateOrder = asyncHandler(async (req, res) => {
     };
 
     await orderRef.update(updateData);
-    const updatedDoc = await orderRef.get();
 
+    if (req.body.quantity !== null) {
+        const donationRef = firestore.collection('donations').doc(currentData.donationId);
+        const donationDoc = await donationRef.get();
+        const currentDonationData = donationDoc.data();
+    
+        let newQuantity = currentDonationData.servingSize - req.body.quantity
+
+        const updateDonationData = {
+            "servingSize": newQuantity,
+        };
+
+        await donationRef.update(updateDonationData);
+    }
+
+    const updatedDoc = await orderRef.get();
     res.status(200).json({
         id: orderId,
         ...updatedDoc.data()
