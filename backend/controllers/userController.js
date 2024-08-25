@@ -45,15 +45,16 @@ const registerUser = asyncHandler(async (req, res) => {
     // stores user information
     userDocRef.set({
       id: userId,
+      isAdmin,
+      isAgency,
+      isDonor,
       organisationName,
-      password,
       area,
       address,
       postalCode,
       operationHour,
       entityNature,
       uploadCertificate,
-      accountType,
       contactPerson,
       contactNumber,
       contactEmail,
