@@ -1,5 +1,5 @@
 import asyncHandler from "../middleware/asyncHandler.js";
-import { auth, firestore } from "../configfirebase.js";
+import { auth, firestore, storage } from "../configfirebase.js";
 
 // @desc    Register new user 
 // @route   POST /api/users
@@ -13,7 +13,6 @@ const registerUser = asyncHandler(async (req, res) => {
     postalCode,
     operationHour,
     entityNature,
-    uploadCertificate,
     accountType,
     contactPerson,
     contactNumber,
@@ -41,6 +40,16 @@ const registerUser = asyncHandler(async (req, res) => {
     } else if (accountType && accountType == 'donor') {
       isDonor = true;
     }
+
+    console.log(req.file);
+    // console.log(req.body)
+    const imageFile = req.file
+    // save image to firebase
+    await storage.bucket().upload(imageFile.path);
+    const imageRef = storage.bucket().file(imageFile.filename)
+    imageRef.makePublic()
+    let uploadCertificate = imageRef.publicUrl();
+    console.log(uploadCertificate)
 
     // stores user information
     userDocRef.set({

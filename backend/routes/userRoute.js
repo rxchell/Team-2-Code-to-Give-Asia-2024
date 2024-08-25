@@ -1,8 +1,11 @@
 import express from 'express'
 import { registerUser, getAllUsers, getUserById, updateUser, deleteUser } from '../controllers/userController.js';
-const router = express.Router()
+import multer from 'multer';
 
-router.post('/', registerUser);
+const router = express.Router()
+var upload = multer({ dest: "./uploads" }).single('uploadCertificate')
+
+router.post('/', upload, registerUser);
 router.get('/', getAllUsers);
 router.get('/:id', getUserById);
 router.put('/:id', updateUser);
