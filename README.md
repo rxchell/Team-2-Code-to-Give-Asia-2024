@@ -1,6 +1,9 @@
 # Idea
 Our platform is designed to streamline food donation and distribution by connecting donors, agencies, and beneficiaries. It features user-friendly interfaces and robust functionality to ensure efficient management of donations while adhering to safety regulations and minimizing waste.
 
+#### Figma Design 
+https://www.figma.com/design/gFdeVH0AB1ItMEoySf30NJ/code-to-give-hackathon?t=KGrP2x1sEbpEhuUm-0
+
 # Features
 1. **Account Registration**: Donors and agencies can apply for accounts by providing basic information and entity certificates, which are reviewed and approved by the Food Bank.
 2. **Food Posting**: Donors submit information about donated food, including type, size, allergens, and safety compliance with the GSFD Bill, complete with photos and storage instructions.
