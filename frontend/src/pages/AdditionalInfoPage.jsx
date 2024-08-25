@@ -14,7 +14,7 @@ export default function AdditionalInfoPage() {
     // Combine all data and submit
     var bodyFormData = new FormData();
     for (var key in formData) {
-      console.log(key);
+      // console.log(key);
       bodyFormData.append(key, formData[key]);
     }
     console.log(bodyFormData);
@@ -28,7 +28,7 @@ export default function AdditionalInfoPage() {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Donation created succesfully");
-      navigate("/");
+      navigate("/donor/home");
     } catch (err) {
       console.log(err.response.data);
       alert(err.response.data.error);

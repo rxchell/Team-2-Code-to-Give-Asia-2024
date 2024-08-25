@@ -12,6 +12,7 @@ export default function FoodOrderPage() {
     const [error, setError] = useState(null);
 
     const [quantity, setQuantity] = useState(1);
+    const [maxQuantity, setMaxQuantity] = useState(1);
 
     const foodDonationID = useParams().id;
 
@@ -23,6 +24,7 @@ export default function FoodOrderPage() {
                 let jsonData = await response.json();
 
                 setFoodDonationData(jsonData);
+                setMaxQuantity(jsonData.servingSize);
                 setIsLoading(false);
             } catch (err) {
                 setError('An error occurred while fetching the data. Please try again later.');
@@ -34,7 +36,7 @@ export default function FoodOrderPage() {
     }, []);
 
     const handleIncrement = () => {
-        if (quantity < foodDonationData.quantity) {
+        if (quantity < maxQuantity) {
             setQuantity(quantity => quantity + 1);
         }
     };
