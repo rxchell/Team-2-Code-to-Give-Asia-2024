@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Optional padding */
+    padding: 20px;
 }
 
 .form-content {
@@ -24,8 +24,7 @@ label {
 
 input[type="text"],
 input[type="number"],
-input[type="date"],
-input[type="time"],
+input[type="datetime-local"],
 select {
     width: 90%;
     padding: 8px;
@@ -39,11 +38,11 @@ label input[type="checkbox"] {
     margin-right: 8px;
 }
 
-div {
+/* div {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 12px;
-}
+} */
 
 label {
     margin-right: 20px;
