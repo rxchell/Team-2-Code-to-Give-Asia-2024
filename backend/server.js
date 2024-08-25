@@ -6,9 +6,12 @@ import authRoute from './routes/authRoute.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
+import cors from 'cors';
 
 const app = express()
 const PORT = 3000
+
+app.use(cors())
 
 // logging middleware
 app.use(morgan('dev'));
@@ -31,6 +34,7 @@ app.use('/api/auth', authRoute)
 
 app.use(notFound)
 app.use(errorHandler)
+app.use(cors());
 
 app.listen(PORT, () => {
   console.log(`app listening on port ${PORT}`)

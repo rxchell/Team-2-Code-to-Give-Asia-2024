@@ -13,6 +13,10 @@ export default function RecordTable() {
     // Temporary transaction data
     const data = FakeTransaction;
 
+    // TODO - Replace with actual fetch request
+    // Use donationRoute by using get ALL
+
+
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">
             <table className="table w-full rounded-lg overflow-hidden">
@@ -24,7 +28,7 @@ export default function RecordTable() {
                         <th className="text-center">Donor</th>
                         <th className="text-center">Beneficiary</th>
                         <th className="text-center">Status</th>
-                        <th className="last:rounded-tr-lg">Show the details</th>
+                        <th className="last:rounded-tr-lg text-center">Show the details</th>
                     </tr>
                 </thead>
                 <tbody>

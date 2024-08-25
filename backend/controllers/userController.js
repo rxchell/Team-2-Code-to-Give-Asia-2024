@@ -20,9 +20,9 @@ const registerUser = asyncHandler(async (req, res) => {
     const userDocRef = firestore.collection('users').doc(userId)
 
     // setting userRole
-    const isAdmin = false;
-    const isAgency = false;
-    const isDonor = false;
+    let isAdmin = false;
+    let isAgency = false;
+    let isDonor = false;
     if (userRole && userRole == 'admin') {
       isAdmin = true;
     } else if (userRole && userRole == 'agency') {
@@ -41,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
       isDonor: isDonor
       // TODO include other information once confirmed
     })
-    res.json({
+    res.status(200).json({
       message: "user registered successfully"
     })
   }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import FoodTypeOptions from './FoodTypeOptions';
 import RegionOptions from './RegionOptions';
 
@@ -8,8 +8,6 @@ export default function OptionsBar ({ onSearch }) {
     
     const handleSearchClick = () => {
         onSearch(selectedFoodTypes, selectedRegion);
-        // console.log(`selectedFoodTypes: ${selectedFoodTypes}`);
-        // console.log(`selectedRegion: ${selectedRegion}`);
     };
 
     return (
