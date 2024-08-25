@@ -57,7 +57,7 @@ const createDonation = asyncHandler(async (req, res) => {
   let collectionRef = firestore.collection(COLLECTION_NAME);
   // TODO validation of order
 
-  docRef = await collectionRef.add(req.body);
+  let docRef = await collectionRef.add(req.body);
   res.json({ [docRef.id]: req.body });
 });
 

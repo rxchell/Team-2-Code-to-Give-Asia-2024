@@ -43,9 +43,24 @@ export default function FoodDonationListingPage() {
         const fetchDonations = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get('http://localhost:3000/api/donations');
-                console.log(response);
-                setFilteredData(response.data);
+                // const response = await axios.get('http://localhost:3000/api/donations');
+                const response = foodDonationData;
+    
+                // const dataArray = [];
+                // response.forEach((item) => {
+                //     const key = Object.keys(item)[0];
+                //     // console.log(`key is ${key}`);
+                //     const itemData = item[key];
+                //     // console.log(itemData);
+                //     dataArray.push({
+                //         donationID: key, 
+                //         ...itemData
+                //     });
+                // });
+                // console.log(`[In Page]\n${dataArray}`);
+                // console.log(dataArray[0].allergies);
+                // console.log(dataArray[0].tags);
+                setFilteredData(response);
                 setIntermediateFilteredData(response)
                 setIsLoading(false);
             } catch (err) {
@@ -71,16 +86,18 @@ export default function FoodDonationListingPage() {
             <h1 className='pb-4 text-3xl text-gray-900 font-bold border-b-2 border-gray-400'>Home - Choose what you need !</h1>
             <OptionsBar onSearch={handleSearch} />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-8 gap-y-8">
+                {console.log(filteredData.length)}
+                {console.log(filteredData)}
                 {filteredData.map((donation) => (
                     <FoodDonationCard
-                        key={donation.id}
-                        imageUrl={donation.imageUrl}
+                        key={donation.donationID}
+                        imageUrl={donation.imageURL}
                         foodName={donation.name}
-                        donor={donation.donor}
-                        region={donation.region}
+                        donor={donation.donor}      
+                        region={donation.region}    
                         foodTags={donation.tags}
-                        allergens={donation.allergens}
-                        quantity={donation.quantity}
+                        allergens={donation.allergies}
+                        quantity={donation.servingSize}
                     />
                 ))}
             </div>
