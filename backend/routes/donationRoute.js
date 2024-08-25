@@ -1,8 +1,7 @@
 import express from "express";
 
-import { createDonation, deleteDonation, getDonationByID, getDonations, updateDonation } from "../controllers/donationController.js";
+import { createDonation, deleteDonation, getDonationByID, getDonations, updateDonation, getDonationsByUserID } from "../controllers/donationController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
-import { createDonation, deleteDonation, getDonationByID, getDonationsByUserID, getDonations, updateDonation } from "../controllers/donationController.js";
 
 
 const router = express.Router();
