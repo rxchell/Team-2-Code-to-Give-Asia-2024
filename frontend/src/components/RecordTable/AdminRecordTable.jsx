@@ -57,7 +57,33 @@ export default function RecordTable({ allRecords}) {
                                     </svg>
                                 </td>
                             </tr>
-                            {expandedRow === index && (
+                            {/* {expandedRow === index && (
+                                <tr className="bg-[#c5ec97] bg-opacity-50">
+                                    <td colSpan="7">
+                                        <AdminFoodDetailsTable
+                                            requestID={item.id}
+                                            requestTime={item.time}
+                                            foodName={item.foodName}
+                                            foodCategory={item.foodCategory}
+                                            quantity={item.quantity}
+                                            producedAt={item.producedAt}
+                                            consumedBy={item.consumedBy}
+                                            foodTags={item.foodTags}
+                                            allergens={item.allergens}
+                                            collectionAddress={item.collectionAddress}
+                                            donor={item.donor}
+                                            donorContact={item.donorContact}
+                                            beneficiary={item.beneficiary}
+                                            beneficiaryContact={item.beneficiaryContact}
+                                            status={item.status}
+                                            operatingHours={item.operatingHours}
+                                            handleFood={item.handleFood}
+                                            additionalNotes={item.additionalNotes}
+                                        />
+                                    </td>
+                                </tr>
+                            )} */}
+                            {/* {expandedRow === index && (
                                 <tr className="bg-[#c5ec97] bg-opacity-50">
                                     <td colSpan="7">
                                         <AdminFoodDetailsTable
@@ -65,7 +91,7 @@ export default function RecordTable({ allRecords}) {
                                         />
                                     </td>
                                 </tr>
-                            )}
+                            )} */}
                         </React.Fragment>
                     ))}
                 </tbody>
