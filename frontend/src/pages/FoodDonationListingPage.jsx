@@ -91,6 +91,7 @@ export default function FoodDonationListingPage() {
                 {filteredData.map((donation) => (
                     <FoodDonationCard
                         key={donation.donationID}
+                        donationID={donation.donationID}
                         imageUrl={donation.imageURL}
                         foodName={donation.name}
                         donor={donation.donor}      

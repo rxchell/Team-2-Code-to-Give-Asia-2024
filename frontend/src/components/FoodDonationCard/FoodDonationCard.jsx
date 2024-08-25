@@ -2,15 +2,7 @@ import { Link } from "react-router-dom";
 import FoodTag from "./FoodTag";
 import React from "react";
 
-export default function FoodDonationCard({ imageUrl, foodName, donor, region, foodTags, allergens, quantity }) {
-
-    // Just for testing purposes
-    // imageUrl = imageUrl || "https://www.elmundoeats.com/wp-content/uploads/2021/02/FP-Nasi-lemak-with-all-its-trimmings-1-500x375.jpg";
-    // foodName = foodName || "Food Name";
-    // donor = donor || "Donor";
-    // region = region || "Region";
-    // foodTags = foodTags || "Food Tags";
-    // quantity = quantity || "10";
+export default function FoodDonationCard({ donationID, imageUrl, foodName, donor, region, foodTags, allergens, quantity }) {
 
     console.log(`[In Card]\tFoodtags: ${foodTags}, Allergens: ${allergens}, foodName: ${foodName}`);
     return (
@@ -45,7 +37,7 @@ export default function FoodDonationCard({ imageUrl, foodName, donor, region, fo
                     }
                 </div>
                 <div className="card-actions justify-center my-5">
-                    <Link className="w-4/5 py-2 px-4 cursor-pointer rounded-lg text-gray-950 font-bold text-xl bg-secondary bg-opacity-80 hover:bg-opacity-100 transition-colors duration-300 border-0">Reserve</Link>
+                <Link to={`food-order/${donationID}`} className="w-4/5 py-2 px-4 cursor-pointer rounded-lg text-gray-950 font-bold text-xl bg-secondary bg-opacity-80 hover:bg-opacity-100 transition-colors duration-300 border-0">Reserve</Link>
                 </div>
             </div>
         </div>

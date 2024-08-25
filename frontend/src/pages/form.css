@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Optional padding */
+    padding: 20px; 
 }
 
 .form-content {
@@ -39,11 +39,11 @@ label input[type="checkbox"] {
     margin-right: 8px;
 }
 
-div {
+/* div {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 12px;
-}
+} */
 
 label {
     margin-right: 20px;
@@ -51,5 +51,5 @@ label {
 
 select[multiple] {
     height: 100px;
-}
+} 
 
