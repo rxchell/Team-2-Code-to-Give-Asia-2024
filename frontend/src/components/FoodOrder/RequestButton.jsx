@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function RequestButton({quantity}) {
+export default function RequestButton({quantity, donationId}) {
     const [showAlert, setShowAlert] = useState(false);
 
     const handleRequest = () => {
         setShowAlert(true);
 
         try { axios.post('/api/orders/1234', {
-            donationId: 1234,
+            donationId,
             quantity,
         })
                 .then(function (response) {
