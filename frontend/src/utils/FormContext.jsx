@@ -6,20 +6,18 @@ export const useFormContext = () => useContext(FormContext);
 
 export const FormProvider = ({ children }) => {
     const [formData, setFormData] = useState({
-        foodType: [],
-        foodName: '',
+        type: [],
+        name: '',
         weight: '',
-        quantity: '',
-        producedDate: '',
-        producedTime: '',
-        consumeByDate: '',
-        consumeByTime: '',
-        specialTags: [],
-        allergens: [],
-        foodPhoto: null,
-        collectByDate: '',
-        collectByTime: '',
-        notes: ''
+        servingSize: '',
+        producedDateTime: '',
+        consumeByDateTime: '',
+        tags: [],
+        allergies: [],
+        imageURL: '',
+        collectBy: '',
+        otherNotes: '',
+        storeReheatInstructions: ''
     });
 
     const updateFormData = (key, value) => {
