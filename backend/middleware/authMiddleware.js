@@ -1,5 +1,5 @@
-import asyncHandler from "./asyncHandler";
-import { auth, firestore } from "../configfirebase";
+import asyncHandler from "./asyncHandler.js";
+import { auth, firestore } from "../configfirebase.js";
 
 // Protect routes
 const protect = asyncHandler(async (req, res, next) => {
@@ -9,7 +9,8 @@ const protect = asyncHandler(async (req, res, next) => {
     token = req.cookies.jwt;
 
     if (token) {
-        const userId = await auth.verifyIdToken(token).uid;
+        const user = await auth.verifyIdToken(token);
+        const userId = user.uid;
         const userDocRef = firestore.collection('users').doc(userId)
         const userSnap = await userDocRef.get();
         if (userSnap) {
