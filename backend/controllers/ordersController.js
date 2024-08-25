@@ -55,6 +55,17 @@ const createOrder = asyncHandler(async (req, res) => {
         throw new Error('quantity and donationId fields are required');
     }
 
+    const donationRef = firestore.collection('donations').doc(donationId);
+    const doc = await donationRef.get();
+    const currentData = doc.data();
+
+    let newQuantity = currentData.servingSize - quantity
+
+    const updateData = {
+        "servingSize": newQuantity,
+        updatedAt: new Date().toISOString()
+    };
+
     const orderBody = {
         userId: userId,
         quantity: quantity,
@@ -63,9 +74,10 @@ const createOrder = asyncHandler(async (req, res) => {
         createdAt: new Date().toISOString()
     };
     
-    const docRef = await firestore.collection(COLLECTION_NAME).add(orderBody);   
+    const docRef = await firestore.collection(COLLECTION_NAME).add(orderBody);
+    await donationRef.update(updateData); 
+
     const newDoc = await docRef.get();
-    
     res.status(201).json({
         id: docRef.id,
         ...newDoc.data()
