@@ -22,6 +22,7 @@ export default function BeneficiaryRecordTable() {
     const data = allData.filter((item) => item.beneficiary === user.name);
 
     // TODO - Replace with actual fetch request
+    // Use orderRoute
 
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">

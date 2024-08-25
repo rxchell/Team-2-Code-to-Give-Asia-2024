@@ -17,24 +17,30 @@ export default function DonorRecordTable() {
     }
 
     // Fetch all transaction data and filter by donor
-    // const allData = FakeTransaction;
-    // const data = allData.filter((item) => item.donor === user.name);
+    const allData = FakeTransaction;
+    const data = allData.filter((item) => item.donor === user.name);
+    useEffect(() => {
+        setTransactions(data);
+    }, [user.name]);
 
     // TODO - Replace with actual fetch request
-    useEffect(() => {
-        const fetchTransactions = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/donations/getall');
-                const data = await response.json();
-                setTransactions(data.filter((item) => item.donor === user.name));
-            } catch (error) {
-                console.error('Error fetching transactions:', error);
-                alert('Error fetching transactions');
-            }
-        };
+    // Use donorRoute by passing in the userID
 
-        fetchTransactions();
-    }, [user.name]);
+    
+    // useEffect(() => {
+    //     const fetchTransactions = async () => {
+    //         try {
+    //             const response = await fetch('http://localhost:3000/api/donations/getall');
+    //             const data = await response.json();
+    //             setTransactions(data.filter((item) => item.donor === user.name));
+    //         } catch (error) {
+    //             console.error('Error fetching transactions:', error);
+    //             alert('Error fetching transactions');
+    //         }
+    //     };
+
+    //     fetchTransactions();
+    // }, [user.name]);
 
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">

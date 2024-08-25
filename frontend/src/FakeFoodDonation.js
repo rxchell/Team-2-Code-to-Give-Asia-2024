@@ -7,8 +7,7 @@ export default [
         quantity: 10,
         imageUrl: "https://www.allrecipes.com/thmb/5SdUVhHTMs-rta5sOblJESXThEE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11691-tomato-and-garlic-pasta-ddmfs-3x4-1-bf607984a23541f4ad936b33b22c9074.jpg",
         tags: ["Halal", "Low-Sugar"],
-        allergens: ["Peanut", "Eggs"]
-        type: "Dry",
+        allergens: ["Peanut", "Eggs"],
         weight: "500g",
         servingSize: "1 cup",
         producedDateTime: "2024-08-20T10:00:00",
@@ -25,7 +24,7 @@ export default [
         quantity: 75,
         imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbKpkqkDKNKcpdQcKI9O65Aw7C_l_iyox-DQ&s",
         tags: ["Gluten-Free"],
-        allergens: ["Milk", "Soy"]
+        allergens: ["Milk", "Soy"],
         type: "Canned",
         weight: "400g",
         servingSize: "1/2 cup",
@@ -43,7 +42,7 @@ export default [
         quantity: 50,
         imageUrl: "https://i5.walmartimages.com/seo/Jif-Natural-Creamy-Peanut-Butter-Spread-Contains-90-Peanuts-40-Ounces_7c892a4d-688c-4e51-b05f-37a70dda6336.be97d82cf82a2c1fc36327c84b3ac136.jpeg",
         tags: ["Halal", "Spicy", "Vegetarian"],
-        allergens: ["Peanut"]
+        allergens: ["Peanut"],
         type: "Dry",
         weight: "1kg",
         servingSize: "2 tbsp",
@@ -61,7 +60,7 @@ export default [
         quantity: 120,
         imageUrl: "https://www.seriouseats.com/thmb/jurw_XoUko0sLM17lhIWseKvsyM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20230309-NasiLemak-MichelleYip-Option1-8d0b9468c998495f91ef4ff6d3b5ab6b.jpg",
         tags: ["Halal", "Spicy"],
-        allergens: ["Seafood ", "Peanut", "Eggs"]
+        allergens: ["Seafood ", "Peanut", "Eggs"],
         type: "Cooked",
         weight: "800g",
         servingSize: "1 plate",
@@ -79,7 +78,7 @@ export default [
         quantity: 80,
         imageUrl: "https://static01.nyt.com/images/2024/01/04/multimedia/AS-Quinoa-tpjk/AS-Quinoa-tpjk-superJumbo.jpg",
         tags: ["Halal", "Spicy", "Vegetarian", "Gluten-Free", "Low-Sugar"],
-        allergens: ["Soy", "Fish"]
+        allergens: ["Soy", "Fish"],
         type: "Dry",
         weight: "1kg",
         servingSize: "1/2 cup",
