@@ -1,33 +1,42 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
-export default function RequestButton({quantity, donationId}) {
+export default function RequestButton({ quantity, donationId }) {
     const [showAlert, setShowAlert] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
     const handleRequest = () => {
         setShowAlert(true);
 
-        try { axios.post('/api/orders/1234', {
-            donationId,
-            quantity,
-        })
-                .then(function (response) {
-                    // handle success
-                    console.log(response.data);
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
-                .finally(function () {
-                    // always executed
-                });
+        try {
+            // axios.post("/api/orders", {
+            //     donationId,
+            //     quantity,
+            // })
+            // .then(function (response) {
+            //     // handle success
+            //     console.log(response.data);
+            // })
+            // .catch(function (error) {
+            //     // handle error
+            //     console.log(error);
+            // })
+            // .finally(function () {
+            //     // always executed
+            // });
+
+            setRedirect(true);
         } catch (error) {
             console.error(error);
         }
 
         setTimeout(() => setShowAlert(false), 2000);
     };
+
+    if (redirect) {
+        return <Navigate to="/user/record" />;
+    }
 
     return (
         <>

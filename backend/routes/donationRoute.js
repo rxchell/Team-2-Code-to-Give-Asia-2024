@@ -9,8 +9,8 @@ var upload = multer({ dest: "./uploads" }).single('imageURL')
 const router = express.Router();
 
 router.get("/:id", getDonationByID);
-router.route("/").get(protect, admin, getDonations);
-// router.route("/").get(getDonations);
+// router.route("/").get(protect, admin, getDonations);
+router.route("/").get(getDonations);
 router.get("/user/:id", getDonationsByUserID);
 router.post("/", upload, createDonation);
 router.delete("/:id", deleteDonation);
