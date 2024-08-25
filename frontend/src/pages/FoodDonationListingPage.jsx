@@ -44,7 +44,16 @@ export default function FoodDonationListingPage() {
             try {
                 setIsLoading(true);
                 // const response = await axios.get('http://localhost:3000/api/donations');
-                const response = foodDonationData;
+                // console.log(`response: ${response}`);
+
+                const response = await fetch("http://localhost:3000/api/donations");
+                let jsonData = await response.json();
+                // console.log(`jsonData: ${jsonData}`);
+                // console.log(`jsonData[0]: ${jsonData[0]}`);
+                // console.log(`jsonData[0].foodName: ${jsonData[0].foodName}`);
+
+
+                // const response = foodDonationData;
     
                 // const dataArray = [];
                 // response.forEach((item) => {
@@ -60,8 +69,8 @@ export default function FoodDonationListingPage() {
                 // console.log(`[In Page]\n${dataArray}`);
                 // console.log(dataArray[0].allergies);
                 // console.log(dataArray[0].tags);
-                setFilteredData(response);
-                setIntermediateFilteredData(response)
+                setFilteredData(jsonData);
+                setIntermediateFilteredData(jsonData)
                 setIsLoading(false);
             } catch (err) {
                 setError('An error occurred while fetching the data. Please try again later.');
@@ -86,20 +95,29 @@ export default function FoodDonationListingPage() {
             <h1 className='pb-4 text-3xl text-gray-900 font-bold border-b-2 border-gray-400'>Home - Choose what you need !</h1>
             <OptionsBar onSearch={handleSearch} />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-8 gap-y-8">
-                {console.log(filteredData.length)}
-                {console.log(filteredData)}
                 {filteredData.map((donation) => (
                     <FoodDonationCard
-                        key={donation.donationID}
-                        donationID={donation.donationID}
-                        imageUrl={donation.imageURL}
-                        foodName={donation.name}
-                        donor={donation.donor}      
-                        region={donation.region}    
-                        foodTags={donation.tags}
-                        allergens={donation.allergies}
-                        quantity={donation.servingSize}
+                        key={donation["donationID"]}
+                        donationID={donation["donationID"]}
+                        imageUrl={donation["imageURL"]}
+                        foodName={donation["name"]}
+                        donor={donation["donor"]}  
+                        region={donation["region"]}   
+                        foodTags={donation["tags"]}
+                        allergens={donation["allergies"]}
+                        quantity={donation["servingSize"]}
                     />
+                    // <FoodDonationCard
+                    //     key={donation.donationID}
+                    //     donationID={donation.donationID}
+                    //     imageUrl={donation.imageURL}
+                    //     foodName={donation.foodName}
+                    //     donor={donation.donor}   // NA   
+                    //     region={donation.region}    // NA
+                    //     foodTags={donation.specialTags}
+                    //     allergens={donation.allergens}
+                    //     quantity={donation.quantity}
+                    // />
                 ))}
             </div>
         </div>

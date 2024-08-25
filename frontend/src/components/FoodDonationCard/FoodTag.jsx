@@ -18,8 +18,9 @@ export default function FoodTag({ tag }) {
         case "Low-Sugar":
             tagColor = "bg-lowSugar";
             break;
-
         default:
+            tagColor = "bg-gray-500";
+            tag = "N/A";
             break;
     }
 
