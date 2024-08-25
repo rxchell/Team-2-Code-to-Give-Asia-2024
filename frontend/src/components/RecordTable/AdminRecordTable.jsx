@@ -11,11 +11,8 @@ export default function RecordTable({ allRecords}) {
         setExpandedRow(expandedRow === index ? null : index);
     };
 
-    // TODO - Replace with actual fetch request
-    // Use donationRoute by using get ALL
     useEffect(() => {
         setTransactions(allRecords);
-        console.log(allRecords);
     }, [allRecords]);
 
     if (!transactions) {
@@ -28,12 +25,7 @@ export default function RecordTable({ allRecords}) {
                 <thead>
                     <tr className="bg-secondary text-white font-extrabold text-xl">
                         <th className="first:rounded-tl-lg text-center">Order Time</th>
-                        {/* <th className="text-center">Food</th>
-                        <th className="text-center">Quantity</th>
-                        <th className="text-center">Donor</th>
-                        <th className="text-center">Beneficiary</th>
-                        <th className="text-center">Status</th> */}
-                        <th className="text-center">Order ID</th>
+                        <th className="text-center">Donation ID</th>
                         <th className="text-center">Quantity</th>
                         <th className="text-center">Status</th>
                         <th className="text-center">Beneficiary ID</th>
@@ -53,15 +45,6 @@ export default function RecordTable({ allRecords}) {
                                 <td className="text-center">{expandedRow !== index ? item["quantity"] : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item["status"] : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item["userId"] : ""}</td>
-                                {/* <td className="text-center">{expandedRow !== index ? item.donor : ""}</td>
-                                <td className="text-center">{expandedRow !== index ? item.beneficiary : ""}</td>
-                                <td className="text-center">{expandedRow !== index ? item.status : ""}</td> */}
-                                {/* <td className="text-center">{item.time}</td>
-                                <td className="text-center">{item.foodName}</td>
-                                <td className="text-center">{item.quantity}</td>
-                                <td className="text-center">{item.beneficiary}</td>
-                                <td className="text-center">{item.beneficiaryContact}</td>
-                                <td className="text-center">{item.status}</td> */}
                                 <td className="text-center" onClick={() => toggleRow(index)}>
                                     <svg
                                         className={`w-6 h-6 inline-block transition-transform duration-200 ${expandedRow === index ? 'transform rotate-180' : ''}`}
@@ -104,24 +87,7 @@ export default function RecordTable({ allRecords}) {
                                 <tr className="bg-[#c5ec97] bg-opacity-50">
                                     <td colSpan="7">
                                         <AdminFoodDetailsTable
-                                            requestID={item.id}
-                                            requestTime={item.time}
-                                            foodName={item.foodName}
-                                            foodCategory={item.foodCategory}
-                                            quantity={item.quantity}
-                                            producedAt={item.producedAt}
-                                            consumedBy={item.consumedBy}
-                                            foodTags={item.foodTags}
-                                            allergens={item.allergens}
-                                            collectionAddress={item.collectionAddress}
-                                            donor={item.donor}
-                                            donorContact={item.donorContact}
-                                            beneficiary={item.beneficiary}
-                                            beneficiaryContact={item.beneficiaryContact}
-                                            status={item.status}
-                                            operatingHours={item.operatingHours}
-                                            handleFood={item.handleFood}
-                                            additionalNotes={item.additionalNotes}
+                                            donationID={item["donationId"]}
                                         />
                                     </td>
                                 </tr>

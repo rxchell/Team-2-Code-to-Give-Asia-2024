@@ -20,11 +20,10 @@ export default function FoodTag({ tag }) {
             break;
         default:
             tagColor = "bg-gray-500";
-            tag = "N/A";
             break;
     }
 
     return (
-        <div className={`rounded-full px-4 py-1 font-medium text-gray-50 ${tagColor} whitespace-nowrap`}>{tag}</div>
+        <div className={`rounded-full px-4 py-1 font-medium text-gray-50 ${tagColor} whitespace-nowrap`}>{tag ? tag : "N/A"}</div>
     )
 }
