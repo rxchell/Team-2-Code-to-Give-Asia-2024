@@ -20,7 +20,6 @@ export default function FoodTag({ tag }) {
             break;
         default:
             tagColor = "bg-gray-500";
-            // tag = "N/A";
             break;
     }
 

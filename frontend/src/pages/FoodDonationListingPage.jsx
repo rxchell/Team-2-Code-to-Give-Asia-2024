@@ -86,6 +86,17 @@ export default function FoodDonationListingPage() {
                         allergens={donation["allergies"]}
                         quantity={donation["servingSize"]}
                     />
+                    // <FoodDonationCard
+                    //     key={donation.donationID}
+                    //     donationID={donation.donationID}
+                    //     imageUrl={donation.imageURL}
+                    //     foodName={donation.foodName}
+                    //     donor={donation.donor}   // NA   
+                    //     region={donation.region}    // NA
+                    //     foodTags={donation.specialTags}
+                    //     allergens={donation.allergens}
+                    //     quantity={donation.quantity}
+                    // />
                 ))}
             </div>
         </div>
