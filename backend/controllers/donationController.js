@@ -13,7 +13,6 @@ const addDonorName = async (donationObjects) => {
 
   for (let donation of donationObjects) {
     let userObj = users.find((obj) => obj["id"] == donation["donorID"]);
-    console.log("userObj:", userObj, "donation['donorID']:", donation["donorID"]);
     if (!userObj) {
       continue;
     }
@@ -35,7 +34,6 @@ const getDonations = asyncHandler(async (req, res) => {
   }
 
   returnResult = await addDonorName(returnResult);
-  console.log(returnResult);
   res.json(returnResult);
 });
 
