@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FakeBeneficiaryAccount from '../FakeBeneficiaryAccount';
 import AgencyManageTable from '../components/RecordTable/AgencyManageTable';
+// import CreateNewBeneficiaryPage from './CreateNewBeneficiaryPage';
 import { Link } from 'react-router-dom';
 
 export default function AgencyManagePage() {
@@ -49,7 +50,7 @@ export default function AgencyManagePage() {
                 </svg>
                 <h3 className='my-auto text-lg'>Create new account for beneficiary</h3>
             </Link>
-            <AgencyManageTable />
+            <AgencyManageTable data={allRecords}/>
         </div>
     );
 };
