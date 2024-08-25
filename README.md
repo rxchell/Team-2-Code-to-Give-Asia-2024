@@ -1,4 +1,7 @@
 # FoodLink 
+<img src="https://github.com/user-attachments/assets/0ef56763-2b90-43d2-9182-a3c7dcd73d38" width="120">
+
+
 ## Idea
 Our platform is designed to streamline food donation and distribution by connecting donors, agencies, and beneficiaries. It features user-friendly interfaces and robust functionality to ensure efficient management of donations while adhering to safety regulations and minimizing waste.
 
