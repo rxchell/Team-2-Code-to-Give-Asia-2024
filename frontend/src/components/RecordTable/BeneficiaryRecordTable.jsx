@@ -21,6 +21,9 @@ export default function BeneficiaryRecordTable() {
     const allData = FakeTransaction;
     const data = allData.filter((item) => item.beneficiary === user.name);
 
+    // TODO - Replace with actual fetch request
+    // Use orderRoute
+
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">
             <table className="table w-full rounded-lg overflow-hidden">
@@ -32,7 +35,7 @@ export default function BeneficiaryRecordTable() {
                         <th className="text-center">Donor</th>
                         <th className="text-center">Contact</th>
                         <th className="text-center">Status</th>
-                        <th className="last:rounded-tr-lg">Show the details</th>
+                        <th className="last:rounded-tr-lg text-center">Show the details</th>
                     </tr>
                 </thead>
                 <tbody>

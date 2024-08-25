@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import FoodDonationCard from "../components/FoodDonationCard/FoodDonationCard";
+import React, { useState, useEffect } from 'react';
 import OptionsBar from "../components/FoodDonationCard/OptionsBar";
-import FoodDonationData from "../FakeFoodDonation"
+import FoodDonationData from "../FakeFoodDonation";
+import FoodDonationCard from "../components/FoodDonationCard/FoodDonationCard";
 
 export default function FoodDonationListingPage() {
     let foodDonationData = FoodDonationData;
     const [filteredData, setFilteredData] = useState(foodDonationData);
+    const [intermediateFilteredData, setIntermediateFilteredData] = useState(foodDonationData);
     const [searchParams, setSearchParams] = useState({ selectedFoodTypes: [], selectedRegion: '' });
-    const [resetting, setResetting] = useState(false);
 
     function filterFoodDonationByFoodType(selectedFoodTypes) {
-        if (!selectedFoodTypes || selectedFoodTypes === 'All Foods') {
+        if (!selectedFoodTypes || selectedFoodTypes[0] === 'All Foods') {
             return foodDonationData;
         } else {
             return foodDonationData.filter((donation) => {
@@ -21,30 +21,25 @@ export default function FoodDonationListingPage() {
 
     function filterFoodDonationByRegion(selectedRegion) {
         if (!selectedRegion || selectedRegion === 'All Regions') {
-            return filteredData;
+            return intermediateFilteredData;
         } else {
-            return filteredData.filter((donation) => {
+            return intermediateFilteredData.filter((donation) => {
                 return donation.region === selectedRegion;
             });
         }
     }
 
     function handleSearch(selectedFoodTypes, selectedRegion) {
-        setResetting(true);
         setSearchParams({ selectedFoodTypes, selectedRegion });
-        setFilteredData(foodDonationData);
+        const filteredByFoodType = filterFoodDonationByFoodType(selectedFoodTypes);
+        setIntermediateFilteredData(filteredByFoodType);
     }
 
     useEffect(() => {
-        if (resetting) {
-            const { selectedFoodTypes, selectedRegion } = searchParams;
-            let filtered = foodDonationData;
-            filtered = filterFoodDonationByFoodType(selectedFoodTypes);
-            filtered = filterFoodDonationByRegion(selectedRegion);
-            setFilteredData(filtered);
-            setResetting(false);
-        }
-    }, [resetting, searchParams]);
+        const { selectedRegion } = searchParams;
+        const filteredByRegion = filterFoodDonationByRegion(selectedRegion);
+        setFilteredData(filteredByRegion);
+    }, [intermediateFilteredData, searchParams]);
 
 
     return (
@@ -60,6 +55,7 @@ export default function FoodDonationListingPage() {
                         donor={donation.donor}
                         region={donation.region}
                         foodTags={donation.tags}
+                        allergens={donation.allergens}
                         quantity={donation.quantity}
                     />
                 ))}

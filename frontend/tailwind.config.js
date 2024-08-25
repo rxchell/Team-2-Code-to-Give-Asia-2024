@@ -1,3 +1,5 @@
+import daisyui from 'daisyui';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -14,14 +16,18 @@ export default {
         halal:      '#003b01',
         spicy:      '#701403',
         vegan:      '#034170',
-        egg:        '#d1e805',
-        peanut:     '#ed8b28',
-        milk:       '#f2a1a1',
-      }
+        glutenFree: '#4f2b02',
+        lowSugar:   '#3a1342',
+      },
+      scrollbar: {
+        'hide': 'hidden',
+      },
     },
   },
+
   plugins: [
     require('daisyui'),
+    require('tailwindcss-scrollbar'),
   ],
 }
 

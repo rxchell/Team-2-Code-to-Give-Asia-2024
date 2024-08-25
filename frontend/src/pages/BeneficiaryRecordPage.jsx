@@ -39,7 +39,7 @@ export default function BeneficiaryRecordPage() {
         //         <RecordTable records={donorRecords} />
         //     )}
         // </div>
-        <div className='p-4'>
+        <div className='p-4 mx-24 my-8'>
             <h1 className='pb-8 text-3xl text-gray-900 font-bold'>Beneficiary Records</h1>
             <BeneficiaryRecordTable />
         </div>

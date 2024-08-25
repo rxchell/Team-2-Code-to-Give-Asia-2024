@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DonorFoodDetailsTable from "./DonorFoodDetailsTable";
 
 import FakeTransaction from "../../FakeTransaction";
 
 export default function DonorRecordTable() {
     const [expandedRow, setExpandedRow] = useState(null);
+    const [transactions, setTransactions] = useState([]);
 
     const toggleRow = (index) => {
         setExpandedRow(expandedRow === index ? null : index);
     };
 
-    // Temporary user data
+    // TODO - Replace with actual user data (Key Yew)
     let user = {
         name: "Local Bakery"
     }
@@ -18,6 +19,28 @@ export default function DonorRecordTable() {
     // Fetch all transaction data and filter by donor
     const allData = FakeTransaction;
     const data = allData.filter((item) => item.donor === user.name);
+    useEffect(() => {
+        setTransactions(data);
+    }, [user.name]);
+
+    // TODO - Replace with actual fetch request
+    // Use donorRoute by passing in the userID
+
+    
+    // useEffect(() => {
+    //     const fetchTransactions = async () => {
+    //         try {
+    //             const response = await fetch('http://localhost:3000/api/donations/getall');
+    //             const data = await response.json();
+    //             setTransactions(data.filter((item) => item.donor === user.name));
+    //         } catch (error) {
+    //             console.error('Error fetching transactions:', error);
+    //             alert('Error fetching transactions');
+    //         }
+    //     };
+
+    //     fetchTransactions();
+    // }, [user.name]);
 
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">
@@ -30,11 +53,11 @@ export default function DonorRecordTable() {
                         <th className="text-center">Beneficiary</th>
                         <th className="text-center">Contact</th>
                         <th className="text-center">Status</th>
-                        <th className="last:rounded-tr-lg">Show the details</th>
+                        <th className="last:rounded-tr-lg text-center">Show the details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item, index) => (
+                    {transactions.map((item, index) => (
                         <React.Fragment key={item.id}>
                             <tr
                                 className={`cursor-pointer text-gray-900 font-semibold ${expandedRow === index ? 'bg-[#c5ec97] bg-opacity-50 border-0' : 'bg-white border-b border-gray-400'} hover:bg-[#c5ec97] hover:bg-opacity-50`}
