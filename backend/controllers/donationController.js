@@ -75,7 +75,7 @@ const getDonationsByUserID = asyncHandler(async (req, res) => {
 const createDonation = asyncHandler(async (req, res) => {
     let collectionRef = firestore.collection(COLLECTION_NAME);
     // TODO validation of order
-    console.log(req.file);
+
     // console.log(req.body)
     const imageFile = req.file
     // save image to firebase
@@ -84,8 +84,14 @@ const createDonation = asyncHandler(async (req, res) => {
     imageRef.makePublic()
     req.body.imageURL = imageRef.publicUrl();
     console.log(req.body.imageURL)
-    let docRef = await collectionRef.add(req.body);
+    console.log(req.body)
+    req.body.tags = req.body.tags.split(',');
+    req.body.allergies = req.body.allergies.split(',');
+    req.body.collectionAddress = req.body.collectionAddress || req.user.address || "Family service center";
+    req.body.region = req.user.area
+    let docRef = await collectionRef.add({ ...req.body, donorID: req.user.id, donor: req.user.organisationName });
     res.json({ donationID: docRef.id, ...req.body });
+    res
 });
 
 // @desc    Update Donation
