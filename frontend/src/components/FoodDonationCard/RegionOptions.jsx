@@ -22,40 +22,40 @@ export default function RegionOptions ({ onChange }) {
             </div>
             <div className="flex items-center">
                 <button
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='Central Region') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleRegionChange({ target: { value: 'Central Region' } })}
+                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='Central') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
+                    onClick={() => handleRegionChange({ target: { value: 'Central' } })}
                 >
                     Central Region
                 </button>
             </div>
             <div className="flex items-center">
                 <button
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='East Region') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleRegionChange({ target: { value: 'East Region' } })}
+                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='East') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
+                    onClick={() => handleRegionChange({ target: { value: 'East' } })}
                 >
                     East Region
                 </button>
             </div>
             <div className="flex items-center">
                 <button
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='West Region') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleRegionChange({ target: { value: 'West Region' } })}
+                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='West') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
+                    onClick={() => handleRegionChange({ target: { value: 'West' } })}
                 >
                     West Region
                 </button>
             </div>
             <div className="flex items-center">
                 <button
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='North Region') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleRegionChange({ target: { value: 'North Region' } })}
+                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='North') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
+                    onClick={() => handleRegionChange({ target: { value: 'North' } })}
                 >
                     North Region
                 </button>
             </div>
             <div className="flex items-center">
                 <button
-                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='South Region') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
-                    onClick={() => handleRegionChange({ target: { value: 'South Region' } })}
+                    className={`px-4 py-2 rounded-md hover:bg-primary hover:text-gray-800 transition-colors duration-300  ${(selectedRegion ==='South') ? 'bg-primary text-gray-900 font-bold' : 'bg-white text-gray-700'}`}
+                    onClick={() => handleRegionChange({ target: { value: 'South' } })}
                 >
                     South Region
                 </button>

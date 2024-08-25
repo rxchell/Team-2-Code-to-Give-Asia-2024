@@ -18,7 +18,7 @@ export default function FoodDonationCard({ donationID, imageUrl, foodName, donor
             <div className="card-body bg-white">
                 <h2 className="text-2xl text-gray-900 font-bold pb-0 mb-0 whitespace-nowrap overflow-hidden text-ellipsis">{foodName}</h2>
                 <h4 className="text-gray-700 font-medium py-0 my-0 whitespace-nowrap overflow-hidden text-ellipsis">{`Donated by ${donor}`}</h4>
-                <h4 className="text-lg text-gray-800 font-semibold py-0 my-0 whitespace-nowrap overflow-hidden text-ellipsis">{region}</h4>
+                <h4 className="text-lg text-gray-800 font-semibold py-0 my-0 whitespace-nowrap overflow-hidden text-ellipsis">{region ? `${region} Region` : "Region: N/A"}</h4>
                 <h4 className="text-gray-700 font-normal py-0 my-0 whitespace-nowrap overflow-hidden text-ellipsis">{`Food ${foodTags.length > 1 ? "tags" : "tag"}:`}</h4>
                 <div className="flex gap-3 overflow-x-scroll no-scrollbar">
                     {

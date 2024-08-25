@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import DonorFoodDetailsTable from "./DonorFoodDetailsTable";
 
 import FakeTransaction from "../../FakeTransaction";
+import FakeFoodDonation from "../../FakeFoodDonation";
 
-export default function DonorRecordTable() {
+export default function DonorRecordTable({ donorRecords }) {
     const [expandedRow, setExpandedRow] = useState(null);
     const [transactions, setTransactions] = useState([]);
 
@@ -17,6 +18,7 @@ export default function DonorRecordTable() {
     }
 
     // Fetch all transaction data and filter by donor
+    // const allData = donorRecords;
     const allData = FakeTransaction;
     const data = allData.filter((item) => item.donor === user.name);
     useEffect(() => {
@@ -47,7 +49,7 @@ export default function DonorRecordTable() {
             <table className="table w-full rounded-lg overflow-hidden">
                 <thead>
                     <tr className="bg-secondary text-white font-extrabold text-xl">
-                        <th className="first:rounded-tl-lg text-center">Time</th>
+                        <th className="first:rounded-tl-lg text-center">Donation ID</th>
                         <th className="text-center">Food</th>
                         <th className="text-center">Quantity</th>
                         <th className="text-center">Beneficiary</th>
@@ -63,7 +65,10 @@ export default function DonorRecordTable() {
                                 className={`cursor-pointer text-gray-900 font-semibold ${expandedRow === index ? 'bg-[#c5ec97] bg-opacity-50 border-0' : 'bg-white border-b border-gray-400'} hover:bg-[#c5ec97] hover:bg-opacity-50`}
                                 onClick={() => toggleRow(index)}
                             >
-                                <td className="text-center">{expandedRow !== index ? item.time : ""}</td>
+                                {/* <td className="text-center">{expandedRow !== index ? item["donationID"] : ""}</td>
+                                <td className="text-center">{expandedRow !== index ? item["name"] : ""}</td>
+                                <td className="text-center">{expandedRow !== index ? item["servingSize"] : ""}</td> */}
+                                <td className="text-center">{expandedRow !== index ? item.id : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item.foodName : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item.quantity : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item.beneficiary : ""}</td>

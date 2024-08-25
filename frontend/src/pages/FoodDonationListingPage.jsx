@@ -6,18 +6,19 @@ import FoodDonationData from "../FakeFoodDonation";
 import axios from 'axios';
 
 export default function FoodDonationListingPage() {
-    let foodDonationData = FoodDonationData;
-    const [filteredData, setFilteredData] = useState(foodDonationData);
-    const [intermediateFilteredData, setIntermediateFilteredData] = useState(foodDonationData);
+    // let foodDonationData = FoodDonationData;
+    const [allData, setAllData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [intermediateFilteredData, setIntermediateFilteredData] = useState([]);
     const [searchParams, setSearchParams] = useState({ selectedFoodTypes: [], selectedRegion: '' });
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     function filterFoodDonationByFoodType(selectedFoodTypes) {
         if (!selectedFoodTypes || selectedFoodTypes[0] === 'All Foods') {
-            return foodDonationData;
+            return allData;
         } else {
-            return foodDonationData.filter((donation) => {
+            return allData.filter((donation) => {
                 return selectedFoodTypes.every((foodType) => donation.tags.includes(foodType));
             });
         }
@@ -69,6 +70,7 @@ export default function FoodDonationListingPage() {
                 // console.log(`[In Page]\n${dataArray}`);
                 // console.log(dataArray[0].allergies);
                 // console.log(dataArray[0].tags);
+                setAllData(jsonData);
                 setFilteredData(jsonData);
                 setIntermediateFilteredData(jsonData)
                 setIsLoading(false);

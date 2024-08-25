@@ -7,8 +7,8 @@ import { protect, admin } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.get("/:id", getDonationByID);
-router.route("/").get(protect, admin, getDonations);
-// router.route("/").get(getDonations);
+// router.route("/").get(protect, admin, getDonations);
+router.route("/").get(getDonations);
 router.get("/user/:id", getDonationsByUserID);
 router.post("/", createDonation);
 router.delete("/:id", deleteDonation);
