@@ -15,7 +15,6 @@ const protect = asyncHandler(async (req, res, next) => {
         const userSnap = await userDocRef.get();
         if (userSnap) {
             req.user = userSnap.data();
-            req.user.id = userId;
         } else {
             throw new Error("Not authorized, token failed");
         }
