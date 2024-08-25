@@ -14,7 +14,7 @@ const protect = asyncHandler(async (req, res, next) => {
         const userDocRef = firestore.collection('users').doc(userId)
         const userSnap = await userDocRef.get();
         if (userSnap) {
-            req.user = userSnap.data()
+            req.user = userSnap.data();
         } else {
             throw new Error("Not authorized, token failed");
         }

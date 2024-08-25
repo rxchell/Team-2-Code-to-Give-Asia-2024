@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 20px; 
 }
 
 .form-content {
@@ -50,5 +50,5 @@ label {
 
 select[multiple] {
     height: 100px;
-}
+} 
 
