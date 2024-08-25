@@ -19,12 +19,14 @@ export const client_auth = getAuth(app);
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-    const { phoneNumber, password } = req.body;
-    const userEmail = await auth.getUserByPhoneNumber(phoneNumber)
-    if (!userEmail) {
-        throw new Error("No user with this phone number")
-    }
-    const userCredential = await signInWithEmailAndPassword(auth, userEmail, password);
+    const { email, password } = req.body;
+    // let user = await auth.getUserByPhoneNumber(phoneNumber)
+    // if (!user) {
+    //     throw new Error("No user with this phone number")
+    // }
+    // const userEmail = user.email
+    console.log(email, password)
+    const userCredential = await signInWithEmailAndPassword(client_auth, email, password);
 
     if (userCredential) {
         const user = userCredential.user
