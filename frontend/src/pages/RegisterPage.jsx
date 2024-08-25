@@ -79,24 +79,26 @@ export default function RegisterPage() {
       // Perform registration logic here
 
       // TODO handle certificate upload
-      const res = await axios.post("/api/users/", {
-        organisationName: formData.organisationName,
-        password: formData.password,
-        area: formData.area,
-        address: formData.address,
-        postalCode: formData.postalCode,
-        operationHour: formData.operationHour,
-        entityNature: formData.entityNature,
-        uploadCertificate: formData.uploadCertificate,
-        accountType: formData.accountType,
-        contactPerson: formData.contactPerson,
-        contactNumber: formData.contactNumber,
-        contactEmail: formData.contactEmail,
-      });
-      if (!res.error) {
+      try {
+        const res = await axios.post("/api/users/", {
+          organisationName: formData.organisationName,
+          password: formData.password,
+          area: formData.area,
+          address: formData.address,
+          postalCode: formData.postalCode,
+          operationHour: formData.operationHour,
+          entityNature: formData.entityNature,
+          uploadCertificate: formData.uploadCertificate,
+          accountType: formData.accountType,
+          contactPerson: formData.contactPerson,
+          contactNumber: formData.contactNumber,
+          contactEmail: formData.contactEmail,
+        });
+
         alert("Registration successful!");
-      } else {
-        alert(res.error);
+      } catch (err) {
+        console.log(err);
+        alert(err.response.data.error);
       }
 
       // toast('🦄 Wow so easy!', {
@@ -116,7 +118,7 @@ export default function RegisterPage() {
   function handlePopupSubmit() {
     if (popupAccepted) {
       setShowPopup(false);
-      handleSubmit(); // Call handleSubmit again
+      handleSubmit({ preventDefault: () => {} }); // Call handleSubmit again
     }
   }
 
