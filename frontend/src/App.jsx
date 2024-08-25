@@ -7,6 +7,11 @@ import Layout from './utils/Layout'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import DonorRecordPage from './pages/DonorRecordPage'
+import BeneficiaryRecordPage from './pages/BeneficiaryRecordPage'
+import AdminRecordPage from './pages/AdminRecordPage'
+import FoodDonationListingPage from './pages/FoodDonationListingPage'
+import FoodOrderPage from './pages/FoodOrderPage'
 
 import DonorRecordPage from './pages/DonorRecordPage'
 import BeneficiaryRecordPage from './pages/BeneficiaryRecordPage'
@@ -35,6 +40,8 @@ export default function App() {
                     <Route path="/agency/manage-user" element={<AgencyManagePage />} />
                     <Route path="/donate" element={<DonatePage />} />
                     <Route path="/guidelines" element={GuidelinesPage}/>
+                    <Route path="/user/home/food-order" element={<FoodOrderPage />} />
+                    {/* <Route path="/user/home/food-order/:id" element={<FoodOrderPage />} /> */}
                     <Route path='*' element={<h1>Not Found</h1>} />
                 </Route>
             </Routes>

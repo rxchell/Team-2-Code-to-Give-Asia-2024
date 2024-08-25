@@ -1,21 +1,20 @@
-import express  from 'express'
+import express from "express";
+import { getAllOrders, getOrderById, createOrder, updateOrder } from "../controllers/ordersController.js";
+import { adminCreateOrder, adminDeleteOrder, adminGetAllOrders, adminGetOrderById, adminUpdateOrder } from "../controllers/ordersAdminController.js"
 
-const router = express.Router()
+const router = express.Router();
 
-// middleware that is specific to this router
-const timeLog = (req, res, next) => {
-    console.log('Time: ', Date.now())
-    next()
-  }
-  router.use(timeLog)
-  
-  // define the home page route
-  router.get('/', (req, res) => {
-    res.send('Birds home page')
-  })
-  // define the about route
-  router.get('/about', (req, res) => {
-    res.send('About birds')
-  })
-  
-  export default router
+// Admin Routes
+router.post("/admin/create", adminCreateOrder);
+router.get("/admin/getById", adminGetOrderById);
+router.get("/admin/getAll", adminGetAllOrders);
+router.delete("/admin/delete", adminDeleteOrder);
+router.put("/admin/update", adminUpdateOrder);
+
+// User Routes
+router.post('/:userId', createOrder);
+router.patch('/:userId/:orderId', updateOrder);
+router.get('/:userId', getAllOrders);
+router.get('/:userId/:orderId', getOrderById);
+
+export default router;

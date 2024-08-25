@@ -93,27 +93,33 @@ export default function FoodDonationListingPage() {
         }
     }
 
-    function filterFoodDonationByRegion(data, selectedRegion) {
+    function filterFoodDonationByRegion(selectedRegion) {
         if (!selectedRegion || selectedRegion === 'All Regions') {
-            return data;
+            return filteredData;
         } else {
-            return data.filter((donation) => {
+            return filteredData.filter((donation) => {
                 return donation.region === selectedRegion;
             });
         }
     }
 
     function handleSearch(selectedFoodTypes, selectedRegion) {
+        setResetting(true);
         setSearchParams({ selectedFoodTypes, selectedRegion });
-        const filteredByFoodType = filterFoodDonationByFoodType(selectedFoodTypes);
-        setIntermediateFilteredData(filteredByFoodType);
+        setFilteredData(foodDonationData);
     }
 
     useEffect(() => {
-        const { selectedRegion } = searchParams;
-        const filteredByRegion = filterFoodDonationByRegion(intermediateFilteredData, selectedRegion);
-        setFilteredData(filteredByRegion);
-    }, [intermediateFilteredData, searchParams]);
+        if (resetting) {
+            const { selectedFoodTypes, selectedRegion } = searchParams;
+            let filtered = foodDonationData;
+            filtered = filterFoodDonationByFoodType(selectedFoodTypes);
+            filtered = filterFoodDonationByRegion(selectedRegion);
+            setFilteredData(filtered);
+            setResetting(false);
+        }
+    }, [resetting, searchParams]);
+
 
     return (
         <div className="container mx-auto py-8">
