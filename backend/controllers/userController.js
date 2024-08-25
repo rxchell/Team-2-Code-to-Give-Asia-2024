@@ -41,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
       isDonor: isDonor
       // TODO include other information once confirmed
     })
-    res.json({
+    res.status(200).json({
       message: "user registered successfully"
     })
   }
