@@ -118,4 +118,3 @@ export default function Sidebar({ userRole, showSidebar, toggleSidebar }) {
         </nav>
     );
 } 
-

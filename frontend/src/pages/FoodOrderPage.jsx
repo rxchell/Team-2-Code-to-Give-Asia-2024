@@ -8,6 +8,8 @@ import RequestButton from "../components/FoodOrder/RequestButton";
 export default function FoodOrderPage() {
     const [foodDonationData] = useState(FoodDonationData[0]);
 
+    const [quantity, setQuantity] = useState(0);
+
     return (
         <div className="container mx-auto py-8">
             <h1 className="pb-4 text-3xl text-gray-900 font-bold border-b-2 border-gray-400">
@@ -42,10 +44,12 @@ export default function FoodOrderPage() {
             </div>
             <div className="flex flex-col items-center">
                 <QuantityCounter
+                    quantity={quantity}
+                    setQuantity={setQuantity}
                     initialQuantity={foodDonationData.quantity}
                 />
                 <div>
-                    <RequestButton />
+                    <RequestButton quantity={quantity} />
                 </div>
             </div>
         </div>

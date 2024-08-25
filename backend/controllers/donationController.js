@@ -4,6 +4,24 @@ import asyncHandler from "../middleware/asyncHandler.js";
 
 const COLLECTION_NAME = "donations";
 
+const addDonorName = async (donationObjects) => {
+  let users = [];
+  const querySnapshot = await firestore.collection("users").get();
+  for (let doc of querySnapshot.docs) {
+    users.push({ ...doc.data(), id: doc.id });
+  }
+
+  for (let donation of donationObjects) {
+    let userObj = users.find((obj) => obj["id"] == donation["donorID"]);
+    if (!userObj) {
+      continue;
+    }
+    donation["donorName"] = userObj["name"];
+  }
+
+  return donationObjects;
+};
+
 // @desc    Fetch all Donations
 // @route   GET /api/donations
 // @access  Public
@@ -12,9 +30,10 @@ const getDonations = asyncHandler(async (req, res) => {
 
   const querySnapshot = await firestore.collection(COLLECTION_NAME).get();
   for (let doc of querySnapshot.docs) {
-    returnResult.push({ [doc.id]: doc.data() });
+    returnResult.push({ donationID: doc.id, ...doc.data() });
   }
 
+  returnResult = await addDonorName(returnResult);
   res.json(returnResult);
 });
 
@@ -25,8 +44,7 @@ const getDonationByID = asyncHandler(async (req, res) => {
   let documentRef = firestore.doc(`${COLLECTION_NAME}/${req.params.id}`);
   let documentSnapshot = await documentRef.get();
   if (documentSnapshot.exists) {
-    // TODO include docID as well
-    res.json(documentSnapshot.data());
+    res.json({ donationID: req.params.id, ...documentSnapshot.data() });
   } else {
     throw new Error("Resource not found");
   }
@@ -44,7 +62,7 @@ const getDonationsByUserID = asyncHandler(async (req, res) => {
   if (!querySnapshot.empty) {
     querySnapshot.forEach((documentSnapshot) => {
       // console.log(`Found document at ${documentSnapshot.ref.path}`);
-      result.push({ [documentSnapshot.id]: documentSnapshot.data() });
+      result.push({ donationID: documentSnapshot.id, ...documentSnapshot.data() });
     });
   }
   res.json(result);
@@ -58,7 +76,7 @@ const createDonation = asyncHandler(async (req, res) => {
   // TODO validation of order
 
   let docRef = await collectionRef.add(req.body);
-  res.json({ [docRef.id]: req.body });
+  res.json({ donationID: docRef.id, ...req.body });
 });
 
 // @desc    Update Donation

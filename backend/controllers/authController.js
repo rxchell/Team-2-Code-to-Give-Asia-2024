@@ -25,7 +25,7 @@ const loginUser = asyncHandler(async (req, res) => {
     //     throw new Error("No user with this phone number")
     // }
     // const userEmail = user.email
-    console.log(email, password)
+
     const userCredential = await signInWithEmailAndPassword(client_auth, email, password);
 
     if (userCredential) {
