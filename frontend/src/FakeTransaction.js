@@ -1,5 +1,25 @@
 export default [
     {
+        "id": 0,
+        "time": "2024-08-24T03:36:16Z",
+        "foodName": "Nasi Lemak",
+        "foodCategory": "Cooked food",
+        "quantity": 10,
+        "producedAt": "2024-08-24T02:36:16Z",
+        "consumedBy": "2024-08-24T06:36:16Z",
+        "foodTags": ["Spicy", "Halal"],
+        "allergens": ["Peanut", "Eggs", "Milk"],
+        "collectionAddress": "10 Bayfront Avenue, Singapore 018956",
+        "beneficiary": "John Doe",
+        "beneficiaryContact": "+65 12345678",
+        "donor": "Nasi Lemak Corner",
+        "donorContact": "+65 12365478",
+        "status": "Pending",
+        "operatingHours": "9 AM - 6 PM",
+        "handleFood": "Pickup at the restaurant",
+        "additionalNotes": "Stored in airtight containers in the refrigerator for up to 4 days, and reheated gently before serving."
+    },
+    {
         "id": 1,
         "time": "2023-08-01T12:00:00Z",
         "foodName": "Bread Loaf",
