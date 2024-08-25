@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import OptionsBar from "../components/FoodDonationCard/OptionsBar";
-import FoodDonationData from "../FakeFoodDonation";
 import FoodDonationCard from "../components/FoodDonationCard/FoodDonationCard";
+
+import FoodDonationData from "../FakeFoodDonation";
+import axios from 'axios';
 
 export default function FoodDonationListingPage() {
     let foodDonationData = FoodDonationData;
     const [filteredData, setFilteredData] = useState(foodDonationData);
     const [intermediateFilteredData, setIntermediateFilteredData] = useState(foodDonationData);
     const [searchParams, setSearchParams] = useState({ selectedFoodTypes: [], selectedRegion: '' });
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     function filterFoodDonationByFoodType(selectedFoodTypes) {
         if (!selectedFoodTypes || selectedFoodTypes[0] === 'All Foods') {
@@ -36,11 +40,31 @@ export default function FoodDonationListingPage() {
     }
 
     useEffect(() => {
+        const fetchDonations = async () => {
+            try {
+                setIsLoading(true);
+                const response = await axios.get('http://localhost:3000/api/donations');
+                console.log(response);
+                setFilteredData(response.data);
+                setIntermediateFilteredData(response)
+                setIsLoading(false);
+            } catch (err) {
+                setError('An error occurred while fetching the data. Please try again later.');
+                setIsLoading(false);
+            }
+        };
+
+        fetchDonations();
+    }, []);
+
+    useEffect(() => {
         const { selectedRegion } = searchParams;
         const filteredByRegion = filterFoodDonationByRegion(selectedRegion);
         setFilteredData(filteredByRegion);
     }, [intermediateFilteredData, searchParams]);
 
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
 
     return (
         <div className="container mx-auto py-8">

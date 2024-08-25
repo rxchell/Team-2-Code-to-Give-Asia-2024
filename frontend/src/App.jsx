@@ -23,7 +23,7 @@ import AgencyManagePage from './pages/AgencyManagePage'
 
 
 // axios.defaults.baseURL = "http://localhost:3000/";
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 export default function App() {
     return (
@@ -39,7 +39,7 @@ export default function App() {
                     <Route path="/admin/home" element={<AdminRecordPage />} />
                     <Route path="/agency/manage-user" element={<AgencyManagePage />} />
                     <Route path="/donate" element={<DonatePage />} />
-                    <Route path="/guidelines" element={GuidelinesPage}/>
+                    <Route path="/guidelines" element={<GuidelinesPage />} />
                     <Route path="/user/home/food-order" element={<FoodOrderPage />} />
                     {/* <Route path="/user/home/food-order/:id" element={<FoodOrderPage />} /> */}
                     <Route path='*' element={<h1>Not Found</h1>} />
