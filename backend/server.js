@@ -34,6 +34,7 @@ app.use('/api/auth', authRoute)
 
 app.use(notFound)
 app.use(errorHandler)
+app.use(cors());
 
 app.listen(PORT, () => {
   console.log(`app listening on port ${PORT}`)
