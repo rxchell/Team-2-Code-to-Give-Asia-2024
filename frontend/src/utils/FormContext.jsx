@@ -16,7 +16,7 @@ export const FormProvider = ({ children }) => {
     imageURL: "",
     name: "",
     openAt: "",
-    producedDatetime: "",
+    producedDateTime: "",
     region: "",
     servingSize: "",
     storeReheatInstructions: "",
