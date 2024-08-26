@@ -100,7 +100,7 @@ export default function CreateNewBeneficiaryPage() {
 }
 
   return (
-    <div className="flex m-6 min-h-screen flex-col">
+    <div className="flex m-6 min-h-screen flex-col items-center">
       <div className="my-4 text-xl font-semibold text-gray-800">
         Manage Beneficiary Accounts &gt;&gt; Create new account
       </div>
