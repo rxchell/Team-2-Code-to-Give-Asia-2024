@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DonorFoodDetailsTable from "./DonorFoodDetailsTable";
-
+import axios from 'axios';
 import FakeTransaction from "../../FakeTransaction";
 import FakeFoodDonation from "../../FakeFoodDonation";
 
@@ -12,38 +12,25 @@ export default function DonorRecordTable({ donorRecords }) {
         setExpandedRow(expandedRow === index ? null : index);
     };
 
-    // TODO - Replace with actual user data (Key Yew)
-    let user = {
-        name: "Local Bakery"
-    }
-
-    // Fetch all transaction data and filter by donor
-    // const allData = donorRecords;
-    const allData = FakeTransaction;
-    const data = allData.filter((item) => item.donor === user.name);
-    useEffect(() => {
-        setTransactions(data);
-    }, [user.name]);
-
-    // TODO - Replace with actual fetch request
-    // Use donorRoute by passing in the userID
-
     
-    // useEffect(() => {
-    //     const fetchTransactions = async () => {
-    //         try {
-    //             const response = await fetch('http://localhost:3000/api/donations/getall');
-    //             const data = await response.json();
-    //             setTransactions(data.filter((item) => item.donor === user.name));
-    //         } catch (error) {
-    //             console.error('Error fetching transactions:', error);
-    //             alert('Error fetching transactions');
-    //         }
-    //     };
+    useEffect(() => {
+        const fetchTransactions = async () => {
+            try {
+                const response = await axios.get('/api/donations/user'); 
+                // console.log(response.data)
+                const data = response.data;
+                setTransactions(data);
+            } catch (error) {
+                console.log(error.response.data)
+                alert(error.response.data.error);
+                console.error('Error fetching transactions:', error);
+            }
+        };
 
-    //     fetchTransactions();
-    // }, [user.name]);
+        fetchTransactions();
+    }, []);
 
+    console.log(transactions)
     return (
         <div className="overflow-x-auto rounded-lg shadow-lg">
             <table className="table w-full rounded-lg overflow-hidden">
@@ -52,19 +39,23 @@ export default function DonorRecordTable({ donorRecords }) {
                         <th className="first:rounded-tl-lg text-center">Donation ID</th>
                         <th className="text-center">Food</th>
                         <th className="text-center">Quantity</th>
-                        <th className="text-center">Beneficiary</th>
-                        <th className="text-center">Contact</th>
-                        <th className="text-center">Status</th>
-                        <th className="last:rounded-tr-lg text-center">Show the details</th>
+                        <th className="last:rounded-tr-lg text-center">Show details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.map((item, index) => (
-                        <React.Fragment key={item.id}>
+                    {transactions.length > 0 ? transactions.map((item, index) => {
+                        let obj = Object.keys(item)[0];
+                        console.log(item[obj]);
+                        return (
+                            <React.Fragment key={index}>    
                             <tr
                                 className={`cursor-pointer text-gray-900 font-semibold ${expandedRow === index ? 'bg-[#c5ec97] bg-opacity-50 border-0' : 'bg-white border-b border-gray-400'} hover:bg-[#c5ec97] hover:bg-opacity-50`}
                                 onClick={() => toggleRow(index)}
                             >
+
+                                <td className="text-center">{expandedRow !== index ? new Date(item[obj].producedDatetime).toLocaleTimeString() : ""}</td>
+                                <td className="text-center">{expandedRow !== index ? item[obj].name : ""}</td>
+                                <td className="text-center">{expandedRow !== index ? item[obj].servingSize : ""}</td>
                                 {/* <td className="text-center">{expandedRow !== index ? item["donationID"] : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item["name"] : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item["servingSize"] : ""}</td> */}
@@ -80,6 +71,7 @@ export default function DonorRecordTable({ donorRecords }) {
                                 <td className="text-center">{item.beneficiary}</td>
                                 <td className="text-center">{item.beneficiaryContact}</td>
                                 <td className="text-center">{item.status}</td> */}
+
                                 <td className="text-center" onClick={() => toggleRow(index)}>
                                     <svg
                                         className={`w-6 h-6 inline-block transition-transform duration-200 ${expandedRow === index ? 'transform rotate-180' : ''}`}
@@ -96,28 +88,28 @@ export default function DonorRecordTable({ donorRecords }) {
                                 <tr className="bg-[#c5ec97] bg-opacity-50">
                                     <td colSpan="7">
                                         <DonorFoodDetailsTable
-                                            requestID={item.id}
-                                            requestTime={item.time}
-                                            foodName={item.foodName}
-                                            foodCategory={item.foodCategory}
-                                            quantity={item.quantity}
-                                            producedAt={item.producedAt}
-                                            consumedBy={item.consumedBy}
-                                            foodTags={item.foodTags}
-                                            allergens={item.allergens}
-                                            collectionAddress={item.collectionAddress}
-                                            beneficiary={item.beneficiary}
-                                            beneficiaryContact={item.beneficiaryContact}
-                                            status={item.status}
-                                            operatingHours={item.operatingHours}
-                                            handleFood={item.handleFood}
-                                            additionalNotes={item.additionalNotes}
+                                            donationID={item[obj].donationID}
+                                            producedDatetime={new Date(item[obj].producedDatetime).toLocaleString()}
+                                            name={item[obj].name}
+                                            type={item[obj].type}
+                                            servingSize={item[obj].servingSize}
+                                            region={item[obj].region}
+                                            consumedBy={new Date(item[obj].consumedBy).toLocaleString()}
+                                            tags={item[obj].tags}
+                                            allergies={item[obj].allergies}
+                                            collectionAddress={item[obj].collectionAddress}
+                                            collectBy={new Date(item[obj].collectBy).toLocaleString()}
+                                            storeReheatInstructions={item[obj].storeReheatInstructions}
+                                            additionalNotes={item[obj].additionalNotes}
                                         />
                                     </td>
                                 </tr>
                             )}
-                        </React.Fragment>
-                    ))}
+                            </React.Fragment>
+                        )
+                    }): 
+                    <h1>Loading...</h1>
+                    }
                 </tbody>
             </table>
         </div>

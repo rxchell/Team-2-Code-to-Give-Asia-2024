@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import BeneficiaryRecordTable from '../components/RecordTable/BeneficiaryRecordTable';
 import FakeTransaction from '../FakeTransaction';
 
@@ -24,10 +23,25 @@ export default function BeneficiaryRecordPage() {
     //     }
     // };
 
-    useEffect(() => {
-        setBeneficiaryRecords(FakeTransaction);
-        setLoading(false);
-    }, []);
+    // useEffect(() => {
+    //     setBeneficiaryRecords(FakeTransaction);
+    //     setLoading(false);
+    // }, []);
+    // useEffect(() => {
+    //     const fetchBeneficiaryRecords = async () => {
+    //         try {
+    //             setLoading(true);
+    //             const response = await axios.get('/api/beneficiary-records'); 
+    //             setBeneficiaryRecords(response.data);
+    //             setLoading(false);
+    //         } catch (err) {
+    //             setError('Error fetching beneficiary records. Please try again later.');
+    //             setLoading(false);
+    //         }
+    //     };
+
+    //     fetchBeneficiaryRecords();
+    // }, []);
 
 
     return (

@@ -55,18 +55,20 @@ const getDonationByID = asyncHandler(async (req, res) => {
 // @route   GET /api/donations/user/:id
 // @access  Public
 const getDonationsByUserID = asyncHandler(async (req, res) => {
-    let result = [];
-    let collectionRef = firestore.collection(COLLECTION_NAME);
-    let filter = Filter.where("donorID", "==", req.params.id);
 
-    let querySnapshot = await collectionRef.where(filter).get();
-    if (!querySnapshot.empty) {
-        querySnapshot.forEach((documentSnapshot) => {
-            // console.log(`Found document at ${documentSnapshot.ref.path}`);
-            result.push({ donationID: documentSnapshot.id, ...documentSnapshot.data() });
-        });
-    }
-    res.json(result);
+  let result = [];
+  let collectionRef = firestore.collection(COLLECTION_NAME);
+  // let filter = Filter.where("donorID", "==", "KuBq4EbQK3NsrMvQAvKjvHRy9zj2");
+
+  let querySnapshot = await collectionRef
+      .where("donorID", "==", req.user.id).get();
+  if (!querySnapshot.empty) {
+      querySnapshot.forEach(doc => {
+        result.push({ [doc.id]: doc.data() });
+      });
+  }
+  res.json(result);
+
 });
 
 // @desc    Create Donation

@@ -25,21 +25,22 @@ export default function DonorRecordPage() {
 
     //     fetchDonorRecords();
     // }, []);
-    useEffect(() => {
-        const fetchDonations = async () => {
-            try {
-                setLoading(true);
-                const response = await fetch("http://localhost:3000/api/donations");
-                let jsonData = await response.json();
-                setDonorRecords(jsonData);
-                setLoading(false);
-            } catch (err) {
-                setError('An error occurred while fetching the data. Please try again later.');
-                setLoading(false);
-            }
-        };
 
-        fetchDonations();
+
+    const fetchDonorRecords = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get('/api/donor-records'); 
+            setDonorRecords(response.data);
+            setLoading(false);
+        } catch (err) {
+            setError('Error fetching donor records. Please try again later.');
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchDonorRecords();
     }, []);
 
 

@@ -8,6 +8,7 @@ import multer from 'multer';
 var upload = multer({ dest: "./uploads" }).single('imageURL')
 const router = express.Router();
 
+router.get("/user", protect, getDonationsByUserID);
 router.get("/:id", getDonationByID);
 // router.route("/").get(protect, admin, getDonations);
 router.route("/").get(getDonations);
