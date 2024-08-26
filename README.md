@@ -5,10 +5,10 @@
 ## Idea
 Our platform is designed to streamline food donation and distribution by connecting donors, agencies, and beneficiaries. It features user-friendly interfaces and robust functionality to ensure efficient management of donations while adhering to safety regulations and minimizing waste.
 
-#### Figma Design 
+#### Figma Design: 
 https://www.figma.com/design/gFdeVH0AB1ItMEoySf30NJ/code-to-give-hackathon?t=KGrP2x1sEbpEhuUm-0
 
-#### Presentation 
+#### Presentation Slides:
 https://www.canva.com/design/DAGOxreJkoA/_QXnzKhlcGW8ddlvkrua3Q/view?utm_content=DAGOxreJkoA&utm_campaign=designshare&utm_medium=link&utm_source=editor
 
 ## Features
