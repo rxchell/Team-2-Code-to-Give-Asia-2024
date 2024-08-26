@@ -7,8 +7,10 @@ const router = express.Router();
 
 // Admin Routes
 router.post("/admin/create", protect, admin, adminCreateOrder);
+// router.post("/admin/create", adminCreateOrder);
 router.get("/admin/getById", protect, admin, adminGetOrderById);
-router.get("/admin/getAll", protect, admin, adminGetAllOrders);
+// router.get("/admin/getAll", protect, admin, adminGetAllOrders);
+router.get("/admin/getAll", adminGetAllOrders);
 router.delete("/admin/delete", protect, admin, adminDeleteOrder);
 router.put("/admin/update", protect, admin, adminUpdateOrder);
 

@@ -80,20 +80,16 @@ export default function RegisterPage() {
       // Perform registration logic here
 
       // TODO handle certificate upload
+      var bodyFormData = new FormData();
+      for (var key in formData) {
+        bodyFormData.append(key, formData[key]);
+      }
       try {
-        const res = await axios.post("/api/users/", {
-          organisationName: formData.organisationName,
-          password: formData.password,
-          area: formData.area,
-          address: formData.address,
-          postalCode: formData.postalCode,
-          operationHour: formData.operationHour,
-          entityNature: formData.entityNature,
-          uploadCertificate: formData.uploadCertificate,
-          accountType: formData.accountType,
-          contactPerson: formData.contactPerson,
-          contactNumber: formData.contactNumber,
-          contactEmail: formData.contactEmail,
+        await axios({
+          method: "post",
+          url: "/api/users",
+          data: bodyFormData,
+          headers: { "Content-Type": "multipart/form-data" },
         });
 
         alert("Registration successful!");

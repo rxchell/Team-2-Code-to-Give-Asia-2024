@@ -33,11 +33,13 @@ export default function App() {
         <FormProvider>
             <Routes>
                 <Route path="/" element={<Layout />} >
-                    <Route index element={<HomePage />} />
+                    <Route index element={<FoodDonationListingPage />} />
+                    <Route path="/food-order/:id" element={<LoginPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/donor/home" element={<DonorRecordPage />} />
                     <Route path="/user/home" element={<FoodDonationListingPage />} />
+                    <Route path="/user/home/food-order/:id" element={<FoodOrderPage />} />
                     <Route path="/user/record" element={<BeneficiaryRecordPage />} />
                     <Route path="/admin/home" element={<AdminRecordPage />} />
                     <Route path="/agency/manage-user" element={<AgencyManagePage />} />
@@ -45,7 +47,6 @@ export default function App() {
                     <Route path="/donate" element={<DonatePage />} />
                     <Route path="/guidelines" element={<GuidelinesPage />} />
                     <Route path="/donate/additional-information" element={<AdditionalInfoPage />} />
-                    <Route path="/user/home/food-order" element={<FoodOrderPage />} />
 
                     {/* <Route path="/user/home/food-order/:id" element={<FoodOrderPage />} /> */}
                     <Route path='*' element={<h1>Not Found</h1>} />

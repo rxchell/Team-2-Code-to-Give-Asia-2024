@@ -1,4 +1,8 @@
-# Idea
+# FoodLink 
+<img src="https://github.com/user-attachments/assets/0ef56763-2b90-43d2-9182-a3c7dcd73d38" width="120">
+
+
+## Idea
 Our platform is designed to streamline food donation and distribution by connecting donors, agencies, and beneficiaries. It features user-friendly interfaces and robust functionality to ensure efficient management of donations while adhering to safety regulations and minimizing waste.
 
 #### Figma Design 
@@ -7,7 +11,7 @@ https://www.figma.com/design/gFdeVH0AB1ItMEoySf30NJ/code-to-give-hackathon?t=KGr
 #### Presentation 
 https://www.canva.com/design/DAGOxreJkoA/_QXnzKhlcGW8ddlvkrua3Q/view?utm_content=DAGOxreJkoA&utm_campaign=designshare&utm_medium=link&utm_source=editor
 
-# Features
+## Features
 1. **Account Registration**: Donors and agencies can apply for accounts by providing basic information and entity certificates, which are reviewed and approved by the Food Bank.
 2. **Food Posting**: Donors submit information about donated food, including type, size, allergens, and safety compliance with the GSFD Bill, complete with photos and storage instructions.
 3. **Donation Records**: Donors can view and manage their donation history, with detailed records accessible through their personal interface.
@@ -20,15 +24,15 @@ https://www.canva.com/design/DAGOxreJkoA/_QXnzKhlcGW8ddlvkrua3Q/view?utm_content
 10. **Quota and Account Information**: Beneficiaries can view their account details and remaining quota to manage their food requests within allocated limits.
 11. **Account Application Review**: The Food Bank reviews donor and agency account applications, deciding on approval or rejection based on the provided information.
 
-# Tech Stack
+## Tech Stack
 - Frontend: React, JavaScript, DaisyUI
 - Backend: Firebase, Express, Postman
 
-# Starting the website
+## Starting the website
 - Frontend: `npm install`, `npm run dev`
 - Backend: `npm install`, `node server.js`
 
-# Branch convention and Dev Process
+## Branch convention and Dev Process
 1. Create a branch off main in the following format `FE/<feature_name_or_fix>` or `BE/<feature_name_or_fix>`
 2. Push code only to your branch and create a PR to main once ready
 4. Pull latest changes from main into branch before merging
