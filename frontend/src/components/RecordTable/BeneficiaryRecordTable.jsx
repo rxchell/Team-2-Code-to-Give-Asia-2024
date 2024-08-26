@@ -35,7 +35,7 @@ export default function BeneficiaryRecordTable() {
                 setBeneficiaryRecords(response.data);
                 setLoading(false);
             } catch (err) {
-                alert(err.response.data.error);
+                // alert(err.response.data.error);
                 setError('Error fetching beneficiary records. Please try again later.');
                 setLoading(false);
             }
@@ -55,7 +55,7 @@ export default function BeneficiaryRecordTable() {
                         <th className="text-center">Donor</th>
                         <th className="text-center">Contact</th>
                         <th className="text-center">Status</th>
-                        <th className="last:rounded-tr-lg text-center">Show the details</th>
+                        <th className="last:rounded-tr-lg text-center">Show Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +65,7 @@ export default function BeneficiaryRecordTable() {
                                 className={`cursor-pointer text-gray-900 font-semibold ${expandedRow === index ? 'bg-[#c5ec97] bg-opacity-50 border-0' : 'bg-white border-b border-gray-400'} hover:bg-[#c5ec97] hover:bg-opacity-50`}
                                 onClick={() => toggleRow(index)}
                             >
-                                <td className="text-center">{expandedRow !== index ? item.time : ""}</td>
+                                <td className="text-center">{expandedRow !== index ? new Date(item.time).toLocaleString() : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item.foodName : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item.quantity : ""}</td>
                                 <td className="text-center">{expandedRow !== index ? item.donor : ""}</td>
